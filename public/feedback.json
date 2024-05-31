@@ -1,0 +1,72 @@
+[
+    {
+        "feedbackText": "The course was amazing! The instructor explained everything clearly and the materials were very helpful.",
+        "userName": "Alice Johnson",
+        "userImage": "https://images.unsplash.com/photo-1609010697446-11f2155278f0?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "classTitle": "Introduction to Programming",
+        "rating": 5
+    },
+    {
+        "feedbackText": "Great class! I learned a lot about web development and feel more confident in my skills now.",
+        "userName": "Bob Smith",
+        "userImage": "https://images.unsplash.com/photo-1609010697446-11f2155278f0?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "classTitle": "Web Development 101",
+        "rating": 4.5
+    },
+    {
+        "feedbackText": "The hands-on projects were very engaging and helped me understand the concepts better.",
+        "userName": "Charlie Brown",
+        "userImage": "https://images.unsplash.com/photo-1609010697446-11f2155278f0?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "classTitle": "Data Science with Python",
+        "rating": 4
+    },
+    {
+        "feedbackText": "The course content was very comprehensive and the support from the instructor was excellent.",
+        "userName": "Dana White",
+        "userImage": "https://images.unsplash.com/photo-1609010697446-11f2155278f0?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "classTitle": "Machine Learning Basics",
+        "rating": 4.8
+    },
+    {
+        "feedbackText": "I enjoyed the interactive lessons and the community was very supportive.",
+        "userName": "Eva Green",
+        "userImage": "https://images.unsplash.com/photo-1609010697446-11f2155278f0?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "classTitle": "Introduction to Cybersecurity",
+        "rating": 4.2
+    },
+    {
+        "feedbackText": "The instructor provided great examples and the assignments were very practical.",
+        "userName": "Frank Wright",
+        "userImage": "https://images.unsplash.com/photo-1609010697446-11f2155278f0?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "classTitle": "Advanced JavaScript",
+        "rating": 4.6
+    },
+    {
+        "feedbackText": "I appreciated the clear explanations and the real-world applications of the topics covered.",
+        "userName": "Grace Lee",
+        "userImage": "https://images.unsplash.com/photo-1609010697446-11f2155278f0?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "classTitle": "Digital Marketing",
+        "rating": 4.7
+    },
+    {
+        "feedbackText": "The tutorials were very detailed and easy to follow. I learned a lot!",
+        "userName": "Henry Adams",
+        "userImage": "https://images.unsplash.com/photo-1609010697446-11f2155278f0?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "classTitle": "Graphic Design Fundamentals",
+        "rating": 4.9
+    },
+    {
+        "feedbackText": "Fantastic course! The projects were challenging but rewarding. Highly recommend.",
+        "userName": "Isla Fisher",
+        "userImage": "https://images.unsplash.com/photo-1609010697446-11f2155278f0?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "classTitle": "Full-Stack Development",
+        "rating": 5
+    },
+    {
+        "feedbackText": "I loved the practical approach of the course. It helped me build my portfolio.",
+        "userName": "Jack Wilson",
+        "userImage": "https://images.unsplash.com/photo-1609010697446-11f2155278f0?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "classTitle": "UI/UX Design",
+        "rating": 4.3
+    }
+]
