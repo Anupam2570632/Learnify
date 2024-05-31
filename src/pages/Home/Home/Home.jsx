@@ -1,8 +1,9 @@
+import StartTeaching from "../StartTeaching/StartTeaching";
 
 const Home = () => {
     return (
         <div>
-            Home page
+            <StartTeaching />
         </div>
     );
 };

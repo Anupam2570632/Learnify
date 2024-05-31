@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import './navbar.css'
+import Btn from "../../components/Btn";
 
 const NavBar = () => {
 
@@ -28,8 +29,8 @@ const NavBar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end space-x-4">
-                    <Link className="px-4 py-2 text-nowrap bg-cyan-600 text-white rounded-full" to={'/login'}>Log In</Link>
-                    <Link className="px-4 py-2 text-nowrap bg-cyan-600 text-white rounded-full" to={'/register'}>Sign Up</Link>
+                    <Link to={'/login'}><Btn text={'Log In'}/></Link>
+                    <Link to={'/register'}><Btn text={'Sign Up'}/></Link>
                 </div>
             </div>
         </div>
