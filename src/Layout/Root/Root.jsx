@@ -3,7 +3,7 @@ import NavBar from "../../Shared/NavBar/NavBar";
 
 const Root = () => {
     return (
-        <div>
+        <div className="text-reddit">
             <NavBar/>
             <Outlet/>
         </div>
