@@ -4,7 +4,7 @@ import { FaFacebook, FaFontAwesome, FaGithub, FaGoogle, FaInstagram, FaLinkedin,
 
 const Partners = () => {
     return (
-        <div className="w-11/12 md:w-4/5 mx-auto py-20">
+        <div className="w-11/12 md:w-4/5 mx-auto pt-20">
             <Marquee gradient gradientColor="cyan" className="py-6 overflow-hidden flex items-center">
                 <FaGoogle className="text-4xl mr-20"/>
                 <FaFacebook className="text-4xl mr-20"/>
