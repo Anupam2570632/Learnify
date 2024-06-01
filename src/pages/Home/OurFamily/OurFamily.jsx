@@ -3,8 +3,8 @@ import { PiBookOpenText } from "react-icons/pi";
 
 const OurFamily = () => {
     return (
-        <div className="flex flex-col md:flex-row gap-8 items-center justify-center w-11/12 md:w-4/5 mx-auto">
-            <div className="md:w-1/2 ">
+        <div className="flex flex-col mt-6 md:mt-20 lg:flex-row gap-8 items-center justify-center w-11/12 md:w-4/5 mx-auto">
+            <div className="lg:w-1/2 ">
                 <div className="md:flex">
                     <div className="mx-auto w-full border p-6 space-y-4">
                         <FaUsers className="text-5xl mx-auto"/>
@@ -23,7 +23,7 @@ const OurFamily = () => {
                     <p className="text-xl font-black text-center">1233</p>
                 </div>
             </div>
-            <div className="md:w-1/2 relative my-6 md:my-20">
+            <div className="lg:w-1/2 relative my-6 md:my-20">
                 <img src="https://images.unsplash.com/photo-1472289065668-ce650ac443d2?q=80&w=1738&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
                 <h2 className="absolute flex items-center justify-center text-4xl font-bold text-white inset-0 bg-black bg-opacity-30">Welcome to LEARNIFY</h2>
             </div>

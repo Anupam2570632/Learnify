@@ -47,15 +47,16 @@ const NavBar = () => {
                     {
                         user ?
                             <>
-                                <div className="relative inline-block">
-                                    <img
-                                        alt="tania andrew"
-                                        src={user.photoURL}
-                                        className="relative inline-block object-cover object-center w-12 h-12 rounded-full cursor-pointer"
-                                        onClick={toggleMenu}
-                                    />
-                                    {showMenu && (
-                                        <div className="absolute z-10 flex flex-col gap-2 overflow-auto rounded-md border border-blue-gray-50 bg-white p-3 font-sans text-sm font-normal text-blue-gray-500 shadow-lg shadow-blue-gray-500/10 focus:outline-none">
+                                <div className="dropdown dropdown-bottom dropdown-end">
+                                    <div tabIndex={0}>
+                                        <div className="avatar">
+                                            <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                                <img src={user.photoURL} />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow  rounded-box w-52">
+                                        <div className="absolute w-full z-10 flex flex-col gap-2 overflow-auto rounded-md text-xl bg-[#002244] font-bold text-blue-gray-500 shadow-lg shadow-blue-gray-500/10 focus:outline-none">
                                             <div
                                                 role="menuitem"
                                                 className="flex w-full select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start leading-tight outline-none transition-all"
@@ -71,14 +72,14 @@ const NavBar = () => {
                                             <hr className="my-2 border-blue-gray-50" role="menuitem" />
                                             <div
                                                 role="menuitem"
-                                                className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start leading-tight outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900"
+                                                className="flex w-full select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start leading-tight outline-none transition-all "
                                             >
-                                                <button onClick={handleLogOut} className="px-4 py-2 bg-cyan-600 rounded-full text-white font-bold text-nowrap">Log Out</button>
+                                                <button onClick={handleLogOut} className="px-4 py-2 bg-cyan-600 text-[16px] rounded-full text-white font-bold text-nowrap">Log Out</button>
                                             </div>
 
 
                                         </div>
-                                    )}
+                                    </div>
                                 </div>
                             </>
                             :
