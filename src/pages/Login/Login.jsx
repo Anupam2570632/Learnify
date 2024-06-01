@@ -9,13 +9,16 @@ import {
 } from "@material-tailwind/react";
 import Lottie from 'lottie-react';
 import registerGif from '../../../public/login.json'
-import { Link} from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 
 const Login = () => {
     const [show, setShow] = useState(false)
+    const { logIn } = useContext(AuthContext)
+    const navigate= useNavigate()
 
     const {
         register,
@@ -24,6 +27,14 @@ const Login = () => {
     } = useForm()
     const onSubmit = (data) => {
         console.log(data)
+        logIn(data.email, data.password)
+            .then(result => {
+                console.log(result.user)
+                navigate('/')
+            })
+            .catch(err => {
+                console.error(err)
+            })
     }
 
 

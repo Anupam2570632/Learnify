@@ -17,7 +17,7 @@ import { AuthContext } from '../../Provider/AuthProvider/AuthProvider'
 
 const Register = () => {
     const [show, setShow] = useState(false)
-    const { createUser } = useContext(AuthContext)
+    const { createUser, updateUser, logOut } = useContext(AuthContext)
     const navigate = useNavigate()
 
     const {
@@ -29,8 +29,15 @@ const Register = () => {
         console.log(data)
         createUser(data.email, data.password)
             .then(result => {
+                updateUser(data.name, data.photoURL)
+                    .then(() => {
+                        console.log('update user success')
+                        logOut()
+                        .then()
+                        .catch()
+                        navigate('/login')
+                    })
                 console.log(result.user)
-                navigate('/')
             })
             .catch(err => {
                 console.error(err)

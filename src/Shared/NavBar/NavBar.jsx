@@ -1,12 +1,23 @@
 import { Link, NavLink } from "react-router-dom";
 import './navbar.css'
 import Btn from "../../components/Btn";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 
 const NavBar = () => {
 
-    const { user } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
+    const [showMenu, setShowMenu] = useState(false);
+
+    const toggleMenu = () => {
+        setShowMenu(!showMenu);
+    };
+
+    const handleLogOut = () => {
+        logOut()
+            .then()
+            .catch()
+    }
 
     const links = <>
         <li><NavLink className={'text-[18px] font-bold'} to={'/'}>Home</NavLink></li>
@@ -36,9 +47,39 @@ const NavBar = () => {
                     {
                         user ?
                             <>
-                                <h2 className="text-white">
-                                    {user.email}
-                                </h2>
+                                <div className="relative inline-block">
+                                    <img
+                                        alt="tania andrew"
+                                        src={user.photoURL}
+                                        className="relative inline-block object-cover object-center w-12 h-12 rounded-full cursor-pointer"
+                                        onClick={toggleMenu}
+                                    />
+                                    {showMenu && (
+                                        <div className="absolute z-10 flex flex-col gap-2 overflow-auto rounded-md border border-blue-gray-50 bg-white p-3 font-sans text-sm font-normal text-blue-gray-500 shadow-lg shadow-blue-gray-500/10 focus:outline-none">
+                                            <div
+                                                role="menuitem"
+                                                className="flex w-full select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start leading-tight outline-none transition-all"
+                                            >
+                                                {user.displayName}
+                                            </div>
+                                            <button
+                                                role="menuitem"
+                                                className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start leading-tight outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900"
+                                            >
+                                                <Link to={'/dashboard'}>Dashboard</Link>
+                                            </button>
+                                            <hr className="my-2 border-blue-gray-50" role="menuitem" />
+                                            <div
+                                                role="menuitem"
+                                                className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start leading-tight outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900"
+                                            >
+                                                <button onClick={handleLogOut} className="px-4 py-2 bg-cyan-600 rounded-full text-white font-bold text-nowrap">Log Out</button>
+                                            </div>
+
+
+                                        </div>
+                                    )}
+                                </div>
                             </>
                             :
                             <>
