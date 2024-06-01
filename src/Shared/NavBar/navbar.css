@@ -1,6 +1,12 @@
-.active{
-    background: transparent !important;
-    color: #b2dfdf !important;
-    text-decoration: underline;
-    text-underline-offset: 7px;
+.active {
+  background: transparent !important;
+  color: #b2dfdf !important;
+  text-decoration: underline;
+  text-underline-offset: 7px;
+}
+
+li:hover {
+  text-decoration: underline;
+  text-underline-offset: 7px;
+  transition-duration: 500ms;
 }

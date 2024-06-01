@@ -10,7 +10,7 @@ const NavBar = () => {
         <li><NavLink className={'text-[18px] font-bold'} to={'/tech'}>Tech on Learnify</NavLink></li>
     </>
     return (
-        <div className="w-full bg-[#002244] text-white">
+        <div className="w-full bg-[#002244] sticky z-10 top-0 text-white">
             <div className="navbar md:w-4/5 mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown m-0">
