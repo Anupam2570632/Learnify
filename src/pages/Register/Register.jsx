@@ -14,6 +14,7 @@ import { useState, useContext } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
 import { AuthContext } from '../../Provider/AuthProvider/AuthProvider'
+import axios from "axios";
 
 const Register = () => {
     const [show, setShow] = useState(false)
@@ -31,10 +32,19 @@ const Register = () => {
             .then(result => {
                 updateUser(data.name, data.photoURL)
                     .then(() => {
+                        const user = {
+                            name: data.name,
+                            email: data.email,
+                            image: data.photoURL,
+                            role: 'student'
+                        }
+
+                        axios.post('http://localhost:5000/users', user)
+                            .then(res => console.log(res.data))
                         console.log('update user success')
                         logOut()
-                        .then()
-                        .catch()
+                            .then()
+                            .catch()
                         navigate('/login')
                     })
                 console.log(result.user)

@@ -1,0 +1,82 @@
+[
+    {
+        "title": "Introduction to Web Development",
+        "name": "John Doe",
+        "image": "https://images.pexels.com/photos/11035371/pexels-photo-11035371.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "price": 49.99,
+        "short_description": "Learn the basics of HTML, CSS, and JavaScript to build your first website.",
+        "total_enrolment": 150
+    },
+    {
+        "title": "Advanced Python Programming",
+        "name": "Jane Smith",
+        "image": "https://images.pexels.com/photos/11035371/pexels-photo-11035371.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "price": 79.99,
+        "short_description": "Master advanced Python concepts and work on real-world projects.",
+        "total_enrolment": 85
+    },
+    {
+        "title": "Digital Marketing 101",
+        "name": "Emily Johnson",
+        "image": "https://images.pexels.com/photos/11035371/pexels-photo-11035371.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "price": 59.99,
+        "short_description": "Understand the fundamentals of digital marketing and how to apply them.",
+        "total_enrolment": 200
+    },
+    {
+        "title": "Data Science for Beginners",
+        "name": "Michael Brown",
+        "image": "https://images.pexels.com/photos/11035371/pexels-photo-11035371.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "price": 89.99,
+        "short_description": "An introductory course on data science, covering basic tools and techniques.",
+        "total_enrolment": 120
+    },
+    {
+        "title": "Graphic Design Essentials",
+        "name": "Sophia Davis",
+        "image": "https://images.pexels.com/photos/11035371/pexels-photo-11035371.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "price": 45.00,
+        "short_description": "Learn the principles of graphic design and create stunning visuals.",
+        "total_enrolment": 175
+    },
+    {
+        "title": "Introduction to Machine Learning",
+        "name": "David Wilson",
+        "image": "https://images.pexels.com/photos/11035371/pexels-photo-11035371.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "price": 99.99,
+        "short_description": "Get started with machine learning concepts and algorithms.",
+        "total_enrolment": 95
+    },
+    {
+        "title": "Photography Masterclass",
+        "name": "Laura Martinez",
+        "image": "https://images.pexels.com/photos/11035371/pexels-photo-11035371.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "price": 70.00,
+        "short_description": "Enhance your photography skills with tips and techniques from experts.",
+        "total_enrolment": 130
+    },
+    {
+        "title": "Mobile App Development",
+        "name": "Robert Anderson",
+        "image": "https://images.pexels.com/photos/11035371/pexels-photo-11035371.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "price": 85.00,
+        "short_description": "Learn to develop mobile applications for Android and iOS.",
+        "total_enrolment": 110
+    },
+    {
+        "title": "Introduction to Cybersecurity",
+        "name": "Patricia Thomas",
+        "image": "https://images.pexels.com/photos/11035371/pexels-photo-11035371.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "price": 60.00,
+        "short_description": "Learn the basics of cybersecurity and how to protect systems and data.",
+        "total_enrolment": 160
+    },
+    {
+        "title": "Business Analytics with Excel",
+        "name": "Charles Jackson",
+        "image": "https://images.pexels.com/photos/11035371/pexels-photo-11035371.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "price": 50.00,
+        "short_description": "Utilize Excel for business analytics and data visualization.",
+        "total_enrolment": 140
+    }
+]
