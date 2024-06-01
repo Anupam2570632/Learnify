@@ -9,24 +9,37 @@ import {
 } from "@material-tailwind/react";
 import Lottie from 'lottie-react';
 import registerGif from '../../../public/register.json'
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
+import { AuthContext } from '../../Provider/AuthProvider/AuthProvider'
 
 const Register = () => {
     const [show, setShow] = useState(false)
+    const { createUser } = useContext(AuthContext)
+    const navigate = useNavigate()
 
     const {
         register,
         formState: { errors },
         handleSubmit,
-      } = useForm()
-      const onSubmit = (data) => console.log(data)
+    } = useForm()
+    const onSubmit = (data) => {
+        console.log(data)
+        createUser(data.email, data.password)
+            .then(result => {
+                console.log(result.user)
+                navigate('/')
+            })
+            .catch(err => {
+                console.error(err)
+            })
+    }
 
 
     return (
-        <div className="flex gap-6 items-center flex-col md:flex-row w-11/12 md:w-4/5 mx-auto h-full">
+        <div className="flex gap-6 py-6 md:py-16 items-center flex-col md:flex-row w-11/12 md:w-4/5 mx-auto h-full">
             <div className="md:w-1/2">
                 <Lottie animationData={registerGif} />
             </div>
@@ -38,7 +51,7 @@ const Register = () => {
                         className="mb-4 grid h-28 place-items-center"
                     >
                         <Typography variant="h3" color="white">
-                            Register Now!
+                            Sign Up Now!
                         </Typography>
                     </CardHeader>
                     <CardBody className="flex flex-col gap-4">
@@ -79,7 +92,7 @@ const Register = () => {
                             containerProps={{ className: "-ml-2.5" }}
                         />
                         <Button type="submit" className="mt-6" fullWidth>
-                            Register
+                            Sign Up
                         </Button>
                         <Typography color="gray" className="mt-4 text-center font-normal">
                             Already have an account?{" "}

@@ -1,8 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
 import './navbar.css'
 import Btn from "../../components/Btn";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 
 const NavBar = () => {
+
+    const { user } = useContext(AuthContext)
 
     const links = <>
         <li><NavLink className={'text-[18px] font-bold'} to={'/'}>Home</NavLink></li>
@@ -29,8 +33,19 @@ const NavBar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end space-x-4">
-                    <Link to={'/login'}><Btn text={'Log In'}/></Link>
-                    <Link to={'/register'}><Btn text={'Sign Up'}/></Link>
+                    {
+                        user ?
+                            <>
+                                <h2 className="text-white">
+                                    {user.email}
+                                </h2>
+                            </>
+                            :
+                            <>
+                                <Link to={'/login'}><Btn text={'Log In'} /></Link>
+                                <Link to={'/register'}><Btn text={'Sign Up'} /></Link>
+                            </>
+                    }
                 </div>
             </div>
         </div>
