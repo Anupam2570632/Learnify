@@ -7,6 +7,7 @@ import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
 import AllClasses from "../pages/AllCLasses/AllClasses";
 import TechOn from "../pages/TechOn/TechOn";
+import Dashboard from "../Layout/Dashboard/Dashboard";
 
 const router = createBrowserRouter([
     {
@@ -34,6 +35,16 @@ const router = createBrowserRouter([
     {
         path: '/login',
         element: <Login />
+    },
+    {
+        path:'/dashboard',
+        element:<Dashboard/>,
+        children:[
+            {
+                path:'home',
+                element:<div>home</div>
+            }
+        ]
     }
 ]);
 
