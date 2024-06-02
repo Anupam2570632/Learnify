@@ -3,6 +3,7 @@ import './navbar.css'
 import Btn from "../../components/Btn";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
+import logo from '../../assets/logoLearnify.png'
 
 const NavBar = () => {
 
@@ -25,7 +26,7 @@ const NavBar = () => {
         <li><NavLink className={'text-[18px] font-bold'} to={'/tech'}>Tech on Learnify</NavLink></li>
     </>
     return (
-        <div className="w-full bg-[#002244] sticky z-10 top-0 text-white">
+        <div className="w-full  bg-cyan-600 sticky z-10 top-0 text-white">
             <div className="navbar md:w-4/5 mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown m-0">
@@ -36,7 +37,9 @@ const NavBar = () => {
                             {links}
                         </ul>
                     </div>
-                    <Link className="text-2xl font-black text-white" to={'/'}>Learnify</Link>
+                    <Link className="text-2xl font-black text-white" to={'/'}>
+                        <img className="mix-blend-multiply h-10 " src={logo} alt="" />
+                    </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -47,7 +50,7 @@ const NavBar = () => {
                     {
                         user ?
                             <>
-                                <div className="dropdown dropdown-bottom dropdown-end">
+                                <div className="dropdown dropdown-bottom dropdown-end hover:cursor-pointer">
                                     <div tabIndex={0}>
                                         <div className="avatar">
                                             <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">

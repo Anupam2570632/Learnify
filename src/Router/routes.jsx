@@ -8,6 +8,7 @@ import Login from "../pages/Login/Login";
 import AllClasses from "../pages/AllCLasses/AllClasses";
 import TechOn from "../pages/TechOn/TechOn";
 import Dashboard from "../Layout/Dashboard/Dashboard";
+import TeacherRequest from "../pages/TeacherRequest/TeacherRequest";
 
 const router = createBrowserRouter([
     {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
             {
                 path:'home',
                 element:<div>home</div>
+            },
+            {
+                path:'teacherRequest',
+                element:<TeacherRequest/>
             }
         ]
     }

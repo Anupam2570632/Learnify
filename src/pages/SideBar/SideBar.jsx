@@ -1,4 +1,4 @@
-import { FaBars, FaBook, FaCalendar, FaCartShopping, FaEnvelope, FaHouse, FaPersonRifle, FaRankingStar, FaRegCalendar, FaRegMoneyBill1, FaShop, FaUser, FaUserGroup, FaUtensils } from "react-icons/fa6";
+import { FaBars, FaEnvelope, FaHouse, FaPersonRifle, FaShop, FaUserGroup, } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import { IoBookSharp } from "react-icons/io5";
 import './sidebar.css'
@@ -6,8 +6,8 @@ import { FaChalkboardTeacher } from "react-icons/fa";
 import { LuBookPlus } from "react-icons/lu";
 
 const SideBar = () => {
-    const isAdmin = false
-    const isTeacher = true
+    const isAdmin = true
+    const isTeacher = false
     const sideLinks = <>
 
         {
@@ -37,10 +37,10 @@ const SideBar = () => {
     </>
 
     return (
-        <div className="drawer lg:drawer-open">
+        <div className="drawer lg:drawer-open z-10">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col lg:hidden ">
-                <label htmlFor="my-drawer-2" className="btn bg-[#002244] w-fit drawer-button lg:hidden"><FaBars /></label>
+                <label htmlFor="my-drawer-2" className="btn bg-[#002244] text-white w-fit drawer-button lg:hidden"><FaBars /></label>
             </div>
             <div className="drawer-side ">
                 <label htmlFor="my-drawer-2" aria-label="c  lose sidebar" className="drawer-overlay"></label>
