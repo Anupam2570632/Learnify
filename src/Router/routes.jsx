@@ -9,6 +9,7 @@ import AllClasses from "../pages/AllCLasses/AllClasses";
 import TechOn from "../pages/TechOn/TechOn";
 import Dashboard from "../Layout/Dashboard/Dashboard";
 import TeacherRequest from "../pages/TeacherRequest/TeacherRequest";
+import AllUsers from "../pages/AllUsers/AllUsers";
 
 const router = createBrowserRouter([
     {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
             {
                 path:'teacherRequest',
                 element:<TeacherRequest/>
+            },
+            {
+                path:'allUsers', 
+                element:<AllUsers/>
             }
         ]
     }

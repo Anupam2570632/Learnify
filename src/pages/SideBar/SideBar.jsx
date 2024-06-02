@@ -16,7 +16,7 @@ const SideBar = () => {
                 <li className="text-white"><NavLink end to={'reservation'}><FaPersonRifle className="text-2xl" /> Profile</NavLink></li>
                 <li className="text-white"><NavLink end to={'teacherRequest'}><FaChalkboardTeacher className="text-2xl" /> Teacher Request</NavLink></li>
                 <li className="text-white"><NavLink end to={'allClass'}><IoBookSharp className="text-2xl" /> All classes</NavLink></li>
-                <li className="text-white"><NavLink end to={'users'}><FaUserGroup className="text-2xl" /> All Users</NavLink></li>
+                <li className="text-white"><NavLink end to={'allUsers'}><FaUserGroup className="text-2xl" /> All Users</NavLink></li>
 
             </>
         }
