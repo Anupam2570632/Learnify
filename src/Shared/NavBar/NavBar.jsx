@@ -70,7 +70,7 @@ const NavBar = () => {
                                                 role="menuitem"
                                                 className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start leading-tight outline-none transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900"
                                             >
-                                                <Link className="w-full" to={'/dashboard'}>Dashboard</Link>
+                                                <Link className="w-full" to={'/dashboard/profile'}>Dashboard</Link>
                                             </button>
                                             <hr className="my-2 border-blue-gray-50" role="menuitem" />
                                             <div

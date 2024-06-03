@@ -78,8 +78,8 @@ const TeacherRequest = () => {
                                     {req.status}
                                 </td>
                                 <th className="flex gap-2">
-                                    <button disabled={req.status !== 'pending'} onClick={() => handleMakeApprove(req._id, req.email)} className="font-bold text-white px-4 py-2 rounded-full bg-cyan-600 flex-1">Approve</button>
-                                    <button disabled={req.status !== 'pending'} onClick={() => handleMakeReject(req._id, req.email)} className="font-bold text-white px-4 py-2 rounded-full bg-cyan-600 flex-1">Reject</button>
+                                    <button disabled={req.status !== 'pending'} onClick={() => handleMakeApprove(req._id, req.email)} className={`font-bold ${req.status !== 'pending' ? 'disabled-btn' : 'bg-cyan-600 text-white'} px-4 py-2 rounded-full flex-1`}>Approve</button>
+                                    <button disabled={req.status !== 'pending'} onClick={() => handleMakeReject(req._id, req.email)} className={`font-bold ${req.status !== 'pending' ? 'disabled-btn' : 'bg-cyan-600 text-white'} px-4 py-2 rounded-full flex-1`}>Reject</button>
                                 </th>
                             </tr>)
                         }

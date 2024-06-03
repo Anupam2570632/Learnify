@@ -6,3 +6,8 @@
 .text-reddit {
   font-family: "Reddit Mono", monospace;
 }
+
+.disabled-btn {
+  background: #d3d3d3;
+  color: #a9a9a9;
+}

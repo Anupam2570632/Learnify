@@ -11,6 +11,9 @@ import Dashboard from "../Layout/Dashboard/Dashboard";
 import TeacherRequest from "../pages/TeacherRequest/TeacherRequest";
 import AllUsers from "../pages/AllUsers/AllUsers";
 import Profile from "../pages/Profile/Profile";
+import AddClass from "../pages/AddClass/AddClass";
+import PrivateRoute from "./PrivateRoute";
+import DashAllClasses from "../pages/DashAllClasses/DashAllClasses";
 
 const router = createBrowserRouter([
     {
@@ -27,7 +30,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'tech',
-                element: <TechOn />
+                element: <PrivateRoute><TechOn /></PrivateRoute>
             }
         ]
     },
@@ -41,23 +44,27 @@ const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <Dashboard />,
+        element: <PrivateRoute><Dashboard /></PrivateRoute>,
         children: [
             {
-                path: 'home',
-                element: <div>home</div>
-            },
-            {
                 path: 'teacherRequest',
-                element: <TeacherRequest />
+                element: <PrivateRoute><TeacherRequest /></PrivateRoute>
             },
             {
                 path: 'allUsers',
-                element: <AllUsers />
+                element: <PrivateRoute><AllUsers /></PrivateRoute>
             },
             {
                 path: 'profile',
-                element: <Profile />
+                element: <PrivateRoute><Profile /></PrivateRoute>
+            },
+            {
+                path: 'addClass',
+                element: <PrivateRoute><AddClass /></PrivateRoute>
+            },
+            {
+                path: 'dashAllClass',
+                element: <PrivateRoute><DashAllClasses /></PrivateRoute>
             }
         ]
     }

@@ -15,12 +15,12 @@ const AllClasses = () => {
                             <h1 className="text-[18px] font-bold text-gray-800">{aClass.title}</h1>
                             <h1 className="text-gray-600">{aClass.name}</h1>
                             <h1 className="text-lg font-semibold text-gray-800">Price : ${aClass.price}</h1>
-                            <h1 className="text-gray-600">Enrolled Students: {aClass.total_enrolment}</h1>
+                            <h1 className="text-gray-600">Enrolled Students: {aClass.total_enrolment == null ? '0' : aClass.total_enrolment}</h1>
                             <div className="divider"></div>
                             <h2 className="italic text-gray-600">
-                                {aClass.short_description.length > 60
-                                    ? `${aClass.short_description.slice(0, 60)}...`
-                                    : aClass.short_description}
+                                {aClass.description.length > 60
+                                    ? `${aClass.description.slice(0, 60)}...`
+                                    : aClass.description}
                             </h2>
                             <div className="divider"></div>
                         </div>

@@ -1,14 +1,19 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "./useAxiosSecure";
 
 const useClasses = () => {
-    const [classes, setClasses] = useState([])
-    useEffect(() => {
-        fetch('/class.json')
-            .then(res => res.json())
-            .then(data => setClasses(data))
-    }, [])
+    const axiosSecure = useAxiosSecure()
+    const { isPending, data: classes = [], refetch } = useQuery({
+        queryKey: ['allClasses'],
+        queryFn: async () => {
+            const res = await axiosSecure.get('/classes')
+            return res.data;
+        },
+    })
 
-    return [classes]
+    
+
+    return [classes, refetch]
 };
 
 export default useClasses;

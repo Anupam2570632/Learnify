@@ -8,7 +8,7 @@ import logo from '../../assets/logoLearnify.png'
 
 const SideBar = () => {
     const isAdmin = true
-    const isTeacher = false
+    const isTeacher = true
     const sideLinks = <>
 
         <li className="text-white"><NavLink end to={'profile'}><FaPersonRifle className="text-2xl" /> Profile</NavLink></li>
@@ -16,7 +16,7 @@ const SideBar = () => {
             isAdmin &&
             <>
                 <li className="text-white"><NavLink end to={'teacherRequest'}><FaChalkboardTeacher className="text-2xl" /> Teacher Request</NavLink></li>
-                <li className="text-white"><NavLink end to={'allClass'}><IoBookSharp className="text-2xl" /> All classes</NavLink></li>
+                <li className="text-white"><NavLink end to={'dashAllClass'}><IoBookSharp className="text-2xl" /> All classes</NavLink></li>
                 <li className="text-white"><NavLink end to={'allUsers'}><FaUserGroup className="text-2xl" /> All Users</NavLink></li>
 
             </>
