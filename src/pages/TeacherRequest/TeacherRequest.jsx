@@ -14,11 +14,14 @@ const TeacherRequest = () => {
         status: 'rejected'
     }
     const approve = {
-        status: 'accepted'
+        status: 'accepted',
+        role: 'teacher'
     }
-    const handleMakeApprove = async (id) => {
+    const handleMakeApprove = async (id, email) => {
         const res = await axiosSecure.patch(`/teacherRequest/${id}`, approve)
-        console.log(res.data)
+        console.log('approve', res.data)
+        const roleRes = await axiosSecure.patch(`/user/${email}`, approve)
+        console.log('role change', roleRes)
     }
     const handleMakeReject = async (id) => {
         const res = await axiosSecure.patch(`/teacherRequest/${id}`, reject)
@@ -75,8 +78,8 @@ const TeacherRequest = () => {
                                     {req.status}
                                 </td>
                                 <th className="flex gap-2">
-                                    <button disabled={req.status !== 'pending'} onClick={() => handleMakeApprove(req._id)} className="font-bold text-white px-4 py-2 rounded-full bg-cyan-600 flex-1">Approve</button>
-                                    <button disabled={req.status !== 'pending'} onClick={() => handleMakeReject(req._id)} className="font-bold text-white px-4 py-2 rounded-full bg-cyan-600 flex-1">Reject</button>
+                                    <button disabled={req.status !== 'pending'} onClick={() => handleMakeApprove(req._id, req.email)} className="font-bold text-white px-4 py-2 rounded-full bg-cyan-600 flex-1">Approve</button>
+                                    <button disabled={req.status !== 'pending'} onClick={() => handleMakeReject(req._id, req.email)} className="font-bold text-white px-4 py-2 rounded-full bg-cyan-600 flex-1">Reject</button>
                                 </th>
                             </tr>)
                         }

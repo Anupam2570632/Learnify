@@ -10,6 +10,7 @@ import TechOn from "../pages/TechOn/TechOn";
 import Dashboard from "../Layout/Dashboard/Dashboard";
 import TeacherRequest from "../pages/TeacherRequest/TeacherRequest";
 import AllUsers from "../pages/AllUsers/AllUsers";
+import Profile from "../pages/Profile/Profile";
 
 const router = createBrowserRouter([
     {
@@ -25,8 +26,8 @@ const router = createBrowserRouter([
                 element: <AllClasses />
             },
             {
-                path:'tech',
-                element:<TechOn/>
+                path: 'tech',
+                element: <TechOn />
             }
         ]
     },
@@ -39,20 +40,24 @@ const router = createBrowserRouter([
         element: <Login />
     },
     {
-        path:'/dashboard',
-        element:<Dashboard/>,
-        children:[
+        path: '/dashboard',
+        element: <Dashboard />,
+        children: [
             {
-                path:'home',
-                element:<div>home</div>
+                path: 'home',
+                element: <div>home</div>
             },
             {
-                path:'teacherRequest',
-                element:<TeacherRequest/>
+                path: 'teacherRequest',
+                element: <TeacherRequest />
             },
             {
-                path:'allUsers', 
-                element:<AllUsers/>
+                path: 'allUsers',
+                element: <AllUsers />
+            },
+            {
+                path: 'profile',
+                element: <Profile />
             }
         ]
     }

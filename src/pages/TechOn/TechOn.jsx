@@ -1,17 +1,18 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const TechOn = () => {
     const { user } = useContext(AuthContext);
     const [status, setStatus] = useState('')
     const [requestArray, setRequestArray] = useState([]);
     const { register, formState: { errors }, handleSubmit, setValue } = useForm();
-    console.log(status)
+    // console.log(status)
+    const axiosSecure = useAxiosSecure()
     useEffect(() => {
         if (user?.email) {
-            axios.get(`http://localhost:5000/teacherRequest?email=${user.email}`)
+            axiosSecure.get(`http://localhost:5000/teacherRequest?email=${user.email}`)
                 .then(res => {
                     setRequestArray(res.data);
                     if (res.data.length > 0) {
@@ -24,9 +25,9 @@ const TechOn = () => {
                 })
                 .catch(error => console.error('Error fetching teacher request:', error));
         }
-    }, [user?.email, setValue]);
+    }, [user?.email, setValue, axiosSecure]);
 
-    console.log(requestArray, requestArray.length)
+    // console.log(requestArray, requestArray.length)
 
     const onSubmit = (data) => {
         const teacher = {
@@ -34,13 +35,27 @@ const TechOn = () => {
             status: 'pending',
             photoURL: user.photoURL
         };
-
-        axios.post('http://localhost:5000/teacherRequest', teacher)
-            .then(res => {
-                console.log('Submission response:', res.data);
-            })
-            .catch(error => console.error('Error submitting teacher request:', error));
+        const another = {
+            status: 'pending'
+        }
+        console.log(status)
+        if (status) {
+            const id = requestArray[0]._id
+            console.log(id)
+            axiosSecure.patch(`/teacherRequest/${id}`, another)
+                .then(res => {
+                    console.log(res.data)
+                })
+        }
+        else {
+            axiosSecure.post('http://localhost:5000/teacherRequest', teacher)
+                .then(res => {
+                    console.log('Submission response:', res.data);
+                })
+                .catch(error => console.error('Error submitting teacher request:', error));
+        }
     };
+
 
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-100">
