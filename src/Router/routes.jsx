@@ -17,6 +17,7 @@ import DashAllClasses from "../pages/DashAllClasses/DashAllClasses";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import AdminRoute from "./AdminRoute";
 import ClassDetails from "../pages/ClassDetails/ClassDetails";
+import Payment from "../pages/Payment/Payment";
 
 const router = createBrowserRouter([
     {
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
             {
                 path: 'dashAllClass',
                 element: <PrivateRoute><AdminRoute><DashAllClasses /></AdminRoute></PrivateRoute>
+            },
+            {
+                path:'payment',
+                element:<Payment/>
             }
         ]
     }
