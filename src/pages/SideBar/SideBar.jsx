@@ -32,6 +32,11 @@ const SideBar = () => {
                 <li className="text-white"><NavLink end to={'myClass'}><IoBookSharp className="text-2xl" /> My Class</NavLink></li>
             </>
         }
+        {
+            !isAdmin && !isTeacher && <>
+                <li className="text-white"><NavLink end to={'myEnrolledClass'}><IoBookSharp className="text-2xl" /> My Enrolled Class</NavLink></li>
+            </>
+        }
         <div className="divider divider-info"></div>
         <li className="text-white"><NavLink end to={'/'}><FaHouse className="text-2xl" /> Home</NavLink></li>
         <li className="text-white"><NavLink end to={'/menu'}><FaBars className="text-2xl" /> Menu</NavLink></li>

@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingPage from "../../components/LoadingPage";
 
@@ -30,7 +30,11 @@ const ClassDetails = () => {
             <p className="text-gray-600 mb-2">Email: {aClass.email}</p>
             <p className="text-lg font-medium text-gray-800 mb-2">Price: ${aClass.price}</p>
             <p className="text-gray-700 mb-4">Description: {aClass.description}</p>
-            
+            <div className="w-full text-center">
+                <Link to={`/payment/${aClass._id}`} className="mx-auto">
+                    <button className="font-bold text-white px-4 py-2 rounded-full bg-cyan-600">PAY</button>
+                </Link>
+            </div>
         </div>
     );
 };

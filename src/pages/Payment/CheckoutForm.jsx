@@ -4,23 +4,42 @@ import Swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
+import LoadingPage from "../../components/LoadingPage";
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ id }) => {
     const navigate = useNavigate()
     const [clientSecret, setClientSecret] = useState('')
     const [error, setError] = useState('')
     const stripe = useStripe()
     const elements = useElements()
-    const axiosSecure = useAxiosSecure()
     const [transactionId, setTransactionId] = useState('')
     const { user } = useContext(AuthContext)
 
-    const totalPrice = 200;
+    const axiosSecure = useAxiosSecure()
+    const { data = [], isPending } = useQuery({
+        queryKey: ['classDetails', { id }],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/classes?id=${id}`)
+            return res.data
+        }
+    })
+
+    if (isPending) {
+        <LoadingPage />
+    }
+
+
+    const aClass = data.length > 0 ? data[0] : {};
+
+
+
+    const totalPrice = parseFloat(aClass?.price);
+    console.log(totalPrice)
     useEffect(() => {
         if (totalPrice > 0) {
             axiosSecure.post('/create-payment-intent', { price: totalPrice })
                 .then(res => {
-                    console.log(res.data.clientSecret)
                     setClientSecret(res.data.clientSecret)
                 })
         }
@@ -74,21 +93,22 @@ const CheckoutForm = () => {
                     email: user?.email,
                     price: totalPrice,
                     transactionId: paymentIntent.id,
+                    classId: id,
                     date: new Date(),
-                    status: 'pending'
                 }
 
                 const res = await axiosSecure.post('/payment', payment)
                 console.log('payment-saved', res.data)
                 if (res.data?.paymentResult?.insertedId) {
-                    Swal.fire({
+                    Swal({
                         position: "top-end",
                         icon: "success",
                         title: "Payment Successful!",
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    navigate('/dashboard/paymentHistory')
+
+                    navigate('/dashboard/myEnrolledClass')
                 }
             }
         }

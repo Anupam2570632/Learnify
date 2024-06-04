@@ -18,6 +18,7 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import AdminRoute from "./AdminRoute";
 import ClassDetails from "../pages/ClassDetails/ClassDetails";
 import Payment from "../pages/Payment/Payment";
+import MyEnrollClass from "../pages/MyEnrollClass/MyEnrollClass";
 
 const router = createBrowserRouter([
     {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
             {
                 path: '/classDetails/:id',
                 element: <PrivateRoute><ClassDetails /></PrivateRoute>
+            },
+            {
+                path: '/payment/:id',
+                element: <Payment />
             }
         ]
     },
@@ -76,8 +81,8 @@ const router = createBrowserRouter([
                 element: <PrivateRoute><AdminRoute><DashAllClasses /></AdminRoute></PrivateRoute>
             },
             {
-                path:'payment',
-                element:<Payment/>
+                path: 'myEnrolledClass',
+                element: <PrivateRoute><MyEnrollClass /></PrivateRoute>
             }
         ]
     }
