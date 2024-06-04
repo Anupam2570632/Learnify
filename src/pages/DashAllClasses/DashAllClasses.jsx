@@ -1,22 +1,33 @@
 import swal from "sweetalert";
 import useClasses from "../../hooks/useClasses";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const DashAllClasses = () => {
-
+    const axiosSecure = useAxiosSecure()
     const [classes, refetch] = useClasses()
-    const handleApprove = (id) => {
+    const approve = {
+        status: 'accepted'
+    }
+    const reject = {
+        status: 'rejected'
+    }
+    const handleApprove = async (id) => {
         swal({
             title: "Are you want to approve the class?",
             icon: "warning",
             buttons: true,
             dangerMode: true,
         })
-            .then((willDelete) => {
+            .then(async (willDelete) => {
                 if (willDelete) {
-                    console.log(id)
-                    swal("Class Approved!", {
-                        icon: "success",
-                    });
+                    const res = await axiosSecure.patch(`/class/${id}`, approve)
+                    console.log(res.data)
+                    if (res.data.modifiedCount > 0) {
+                        swal("Class Approved!", {
+                            icon: "success",
+                        });
+                        refetch()
+                    }
                 }
             });
     }

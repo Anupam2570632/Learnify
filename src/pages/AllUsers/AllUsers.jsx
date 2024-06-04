@@ -1,13 +1,38 @@
-import { useEffect, useState } from "react";
+import swal from "sweetalert";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useUsers from '../../hooks/useUsers'
 
 const AllUsers = () => {
-    const [users, setUsers] = useState([])
     const axiosSecure = useAxiosSecure()
-    useEffect(() => {
-        axiosSecure.get('/users')
-            .then(res => setUsers(res.data))
-    }, [axiosSecure])
+
+    const [users, refetch] = useUsers()
+
+    const approve = {
+        role: 'admin'
+    }
+    const handleMkeAdmin = async (email, name) => {
+        swal({
+            title: `Are you want to make ${name} admin?`,
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then(async (willDelete) => {
+                if (willDelete) {
+                    const res = await axiosSecure.patch(`/user/${email}`, approve)
+                    console.log(res.data)
+                    if (res.data.modifiedCount > 0) {
+                        swal(`${name} is now an admin!`, {
+                            icon: "success",
+                        });
+                        refetch()
+                    }
+                }
+            });
+    }
+
+
+
     return (
         <div>
             <div className="overflow-x-auto">
@@ -47,7 +72,7 @@ const AllUsers = () => {
                                     {user.email}
                                 </td>
                                 <th>
-                                    <button className="text-nowrap font-bold text-white px-4 py-2 rounded-full bg-cyan-600">
+                                    <button disabled={user.role == 'admin'} onClick={() => handleMkeAdmin(user.email, user.name)} className={`text-nowrap ${user.role == 'admin' ? 'disabled-btn' : 'bg-cyan-600 text-white'} font-bold px-4 py-2 rounded-full`}>
                                         Make Admin
                                     </button>
                                 </th>

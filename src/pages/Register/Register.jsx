@@ -72,9 +72,9 @@ const Register = () => {
                         </Typography>
                     </CardHeader>
                     <CardBody className="flex flex-col gap-4">
-                        <Input {...register("name", { required: true })} name="name" required label="Your Name" type="text" size="lg" />
-                        <Input {...register("photoURL", { required: true })} name="photoURL" required label="Photo URL" type="text" size="lg" />
-                        <Input {...register("email", { required: true })} name="email" required label="Your Email" type="email" size="lg" />
+                        <Input {...register("name", { required: true })} name="name" label="Your Name" type="text" size="lg" />
+                        <Input {...register("photoURL", { required: true })} name="photoURL" label="Photo URL" type="text" size="lg" />
+                        <Input {...register("email", { required: true })} name="email" label="Your Email" type="email" size="lg" />
                         <div className="relative">
                             <Input {...register("password", { required: true })} name="password" required label="Password" type={show ? "text" : "password"} size="lg" />
                             {

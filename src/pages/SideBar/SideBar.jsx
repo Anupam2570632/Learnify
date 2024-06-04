@@ -5,10 +5,14 @@ import './sidebar.css'
 import { FaChalkboardTeacher } from "react-icons/fa";
 import { LuBookPlus } from "react-icons/lu";
 import logo from '../../assets/logoLearnify.png'
+import useAdmin from "../../hooks/useAdmin";
+import useTeacher from "../../hooks/useTeacher";
 
 const SideBar = () => {
-    const isAdmin = true
-    const isTeacher = true
+    const [isAdmin] = useAdmin()
+    const [isTeacher] = useTeacher()
+
+
     const sideLinks = <>
 
         <li className="text-white"><NavLink end to={'profile'}><FaPersonRifle className="text-2xl" /> Profile</NavLink></li>
@@ -37,13 +41,13 @@ const SideBar = () => {
     </>
 
     return (
-        <div className="drawer lg:drawer-open z-10">
+        <div className="drawer xl:drawer-open z-10">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content flex flex-col lg:hidden ">
-                <label htmlFor="my-drawer-2" className="btn bg-[#002244] text-white w-fit drawer-button lg:hidden"><FaBars /></label>
+            <div className="drawer-content flex flex-col xl:hidden ">
+                <label htmlFor="my-drawer-2" className="btn bg-[#002244] text-white w-fit drawer-button xl:hidden"><FaBars /></label>
             </div>
             <div className="drawer-side ">
-                <label htmlFor="my-drawer-2" aria-label="c  lose sidebar" className="drawer-overlay"></label>
+                <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-80 min-h-full bg-[#002244] space-y-2">
                     <div className="flex flex-col items-start p-4 text-start">
                         <img className="mix-blend-multiply h-10 " src={logo} alt="" />

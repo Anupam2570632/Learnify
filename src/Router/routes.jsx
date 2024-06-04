@@ -14,11 +14,13 @@ import Profile from "../pages/Profile/Profile";
 import AddClass from "../pages/AddClass/AddClass";
 import PrivateRoute from "./PrivateRoute";
 import DashAllClasses from "../pages/DashAllClasses/DashAllClasses";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Root />,
+        errorElement:<ErrorPage/>,
         children: [
             {
                 path: '/',
