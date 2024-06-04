@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useClasses from "../../hooks/useClasses";
 
 const AllClasses = () => {
@@ -25,9 +26,11 @@ const AllClasses = () => {
                             <div className="divider"></div>
                         </div>
                         <div className="flex-1 h-full flex items-center justify-center">
-                            <button className="px-4 py-2 rounded-full bg-cyan-600 btn-block text-white font-bold hover:bg-cyan-700">
-                                Enroll
-                            </button>
+                            <Link className="w-full" to={`/classDetails/${aClass._id}`}>
+                                <button className="px-4 py-2 rounded-full bg-cyan-600 btn-block text-white font-bold hover:bg-cyan-700">
+                                    Enroll
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </div>)

@@ -15,12 +15,14 @@ import AddClass from "../pages/AddClass/AddClass";
 import PrivateRoute from "./PrivateRoute";
 import DashAllClasses from "../pages/DashAllClasses/DashAllClasses";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import AdminRoute from "./AdminRoute";
+import ClassDetails from "../pages/ClassDetails/ClassDetails";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Root />,
-        errorElement:<ErrorPage/>,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: '/',
@@ -31,8 +33,12 @@ const router = createBrowserRouter([
                 element: <AllClasses />
             },
             {
-                path: 'tech',
+                path: '/tech',
                 element: <PrivateRoute><TechOn /></PrivateRoute>
+            },
+            {
+                path: '/classDetails/:id',
+                element: <PrivateRoute><ClassDetails /></PrivateRoute>
             }
         ]
     },
@@ -50,11 +56,11 @@ const router = createBrowserRouter([
         children: [
             {
                 path: 'teacherRequest',
-                element: <PrivateRoute><TeacherRequest /></PrivateRoute>
+                element: <PrivateRoute><AdminRoute><TeacherRequest /></AdminRoute></PrivateRoute>
             },
             {
                 path: 'allUsers',
-                element: <PrivateRoute><AllUsers /></PrivateRoute>
+                element: <PrivateRoute><AdminRoute><AllUsers /></AdminRoute></PrivateRoute>
             },
             {
                 path: 'profile',
@@ -66,7 +72,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'dashAllClass',
-                element: <PrivateRoute><DashAllClasses /></PrivateRoute>
+                element: <PrivateRoute><AdminRoute><DashAllClasses /></AdminRoute></PrivateRoute>
             }
         ]
     }
