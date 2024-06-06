@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const MyEnrollClass = () => {
     const { user } = useContext(AuthContext)
@@ -35,7 +36,14 @@ const MyEnrollClass = () => {
     console.log(classes)
     return (
         <div className="container mx-auto px-4 lg:p-14">
-            <h1 className="text-3xl font-bold mb-8">Enrolled Classes</h1>
+            <div className="flex my-4 items-center justify-between">
+                <h1 className="text-3xl font-bold mb-8">Enrolled Classes</h1>
+                <div>
+                    <Link to={'/downloadPdf'}>
+                        <button className="px-4 py-2 bg-cyan-600 text-white font-bold text-nowrap">Download Invoice</button>
+                    </Link>
+                </div>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4">
                 {
                     classes.map((classItem) => (

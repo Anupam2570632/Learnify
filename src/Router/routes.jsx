@@ -19,6 +19,9 @@ import AdminRoute from "./AdminRoute";
 import ClassDetails from "../pages/ClassDetails/ClassDetails";
 import Payment from "../pages/Payment/Payment";
 import MyEnrollClass from "../pages/MyEnrollClass/MyEnrollClass";
+import MyOrders from "../pages/MyOrders/MyOrders";
+import MyClass from "../pages/MyClass/MyClass";
+import UpdateClass from "../pages/UpdateClass/UpdateClass";
 
 const router = createBrowserRouter([
     {
@@ -57,6 +60,10 @@ const router = createBrowserRouter([
         element: <Login />
     },
     {
+        path: '/downloadPdf',
+        element: <PrivateRoute><MyOrders /></PrivateRoute>
+    },
+    {
         path: '/dashboard',
         element: <PrivateRoute><Dashboard /></PrivateRoute>,
         children: [
@@ -83,6 +90,14 @@ const router = createBrowserRouter([
             {
                 path: 'myEnrolledClass',
                 element: <PrivateRoute><MyEnrollClass /></PrivateRoute>
+            },
+            {
+                path: 'myClass',
+                element: <PrivateRoute><MyClass /></PrivateRoute>
+            },
+            {
+                path: 'updateClass/:id',
+                element: <PrivateRoute><UpdateClass /></PrivateRoute>
             }
         ]
     }

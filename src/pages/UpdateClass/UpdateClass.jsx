@@ -4,50 +4,58 @@ import {
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import swal from "sweetalert";
-import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import LoadingPage from "../../components/LoadingPage";
 
-const AddClass = () => {
+const UpdateClass = () => {
     const { user } = useContext(AuthContext);
-    const navigate= useNavigate()
+    const { id } = useParams();
+    console.log(id)
 
     const axiosSecure = useAxiosSecure();
     const { register, handleSubmit, formState: { errors } } = useForm();
 
+
     const mutation = useMutation({
-        mutationFn: (aClass) => {
-            const setClass = {
-                ...aClass,
-                total_enrollment: 0
-            }
-            return axiosSecure.post('/classes', setClass);
+        mutationFn: (updatedClass) => {
+            // Send PUT request with the updated class data
+            return axiosSecure.put(`/class/${id}`, updatedClass);
         },
         onSuccess: () => {
-            // Handle successful mutation
-            console.log("Class added successfully");
             swal({
-                title: "Class Added Successfully!",
+                title: "Class Updated Successfully!",
                 icon: "success",
                 timer: 1500,
             });
-            navigate('/dashboard/myClass')
+            refetch()
         },
         onError: (error) => {
-            // Handle error during mutation
-            console.error("Error adding class:", error);
+            console.error("Error updating class:", error);
         }
     });
 
-    const onSubmit = (data) => {
-        // Submit class data to MongoDB
-        console.log(data);
-        const aClass = {
-            ...data,
-            status: 'pending'
+    const { data: aClass, isPending, refetch } = useQuery({
+        queryKey: ['class', id],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/classes?id=${id}`);
+            return res.data;
         }
-        mutation.mutate(aClass);
+    });
+
+    if (isPending) {
+        return <LoadingPage />;
+    }
+
+    const onSubmit = (data) => {
+        const updatedClass = {
+            ...data,
+            total_enrollment: aClass[0].total_enrollment,
+            status: aClass[0].status 
+        };
+        mutation.mutate(updatedClass);
     };
 
     return (
@@ -57,13 +65,14 @@ const AddClass = () => {
                 className="mb-4 grid bg-[#002244] h-28 place-items-center"
             >
                 <Typography variant="h3" color="white">
-                    Add Class
+                    Update Class
                 </Typography>
             </CardHeader>
             <CardBody className="flex flex-col gap-4">
                 <div className="md:flex md:flex-row md:gap-4 space-y-4 md:space-y-0">
                     <Input
                         color="blue"
+                        defaultValue={aClass[0].title}
                         {...register("title", { required: true })}
                         required
                         label="Title"
@@ -93,10 +102,11 @@ const AddClass = () => {
                         label="Email"
                         type="email"
                         size="lg"
-                        className="mw-full"
+                        className="w-full"
                     />
                     <Input
                         color="blue"
+                        defaultValue={aClass[0].price}
                         {...register("price", { required: true })}
                         required
                         label="Price"
@@ -107,6 +117,7 @@ const AddClass = () => {
                 </div>
                 <Textarea
                     color="blue"
+                    defaultValue={aClass[0].description}
                     {...register("description", { required: true })}
                     required
                     label="Description"
@@ -115,6 +126,7 @@ const AddClass = () => {
                 />
                 <Input
                     color="blue"
+                    defaultValue={aClass[0].image}
                     {...register("image", { required: true })}
                     required
                     label="Image"
@@ -124,11 +136,11 @@ const AddClass = () => {
             </CardBody>
             <CardFooter className="pt-0">
                 <Button type="submit" className="mt-6 bg-[#002244]" fullWidth>
-                    Add Class
+                    Update Class
                 </Button>
             </CardFooter>
         </form>
     );
 };
 
-export default AddClass;
+export default UpdateClass;
