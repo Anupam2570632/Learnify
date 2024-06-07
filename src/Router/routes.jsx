@@ -22,6 +22,7 @@ import MyEnrollClass from "../pages/MyEnrollClass/MyEnrollClass";
 import MyOrders from "../pages/MyOrders/MyOrders";
 import MyClass from "../pages/MyClass/MyClass";
 import UpdateClass from "../pages/UpdateClass/UpdateClass";
+import TeacherClassDetails from "../pages/TeacherClassDetails/TeacherClassDetails";
 
 const router = createBrowserRouter([
     {
@@ -98,6 +99,10 @@ const router = createBrowserRouter([
             {
                 path: 'updateClass/:id',
                 element: <PrivateRoute><UpdateClass /></PrivateRoute>
+            },
+            {
+                path:'teacherClassDetails/:id',
+                element:<PrivateRoute><TeacherClassDetails/></PrivateRoute>
             }
         ]
     }

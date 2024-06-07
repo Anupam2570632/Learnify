@@ -12,6 +12,7 @@ const Profile = () => {
             .then(res => setDbUser(res.data));
     }, [user?.email, axiosSecure]);
 
+
     return (
         <div className="container mx-auto my-8">
             <div className="max-w-lg mx-auto bg-white shadow-lg rounded-lg overflow-hidden">

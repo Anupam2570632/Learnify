@@ -77,12 +77,16 @@ const MyClass = () => {
                             >
                                 Delete
                             </button>
-                            <button
-                                disabled={aClass.status !== 'accepted'}
-                                className={`flex-1 px-4 py-2 text-nowrap ${aClass.status !== 'accepted' ? 'disabled-btn' : 'bg-gray-500 text-white  hover:bg-gray-600'} rounded-lg`}
-                            >
-                                See details
-                            </button>
+                            <div>
+                                <Link to={`/dashboard/teacherClassDetails/${aClass._id}`}>
+                                    <button
+                                        disabled={aClass.status !== 'accepted'}
+                                        className={`flex-1 px-4 py-2 text-nowrap ${aClass.status !== 'accepted' ? 'disabled-btn' : 'bg-gray-500 text-white  hover:bg-gray-600'} rounded-lg`}
+                                    >
+                                        See details
+                                    </button>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>
