@@ -16,7 +16,7 @@ const MyEnrollClass = () => {
     })
 
 
-    const ClassCard = ({ title, name, image }) => {
+    const ClassCard = ({ id, title, name, image }) => {
         return (
             <div className="max-w-sm rounded overflow-hidden mx-auto shadow-lg">
                 <img className="w-full" src={image} alt={title} />
@@ -25,9 +25,11 @@ const MyEnrollClass = () => {
                     <p className="text-gray-700 text-base">By: {name}</p>
                 </div>
                 <div className="px-6 pt-4 pb-2">
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Continue
-                    </button>
+                    <Link to={`/dashboard/studentClassContinue/${id}`}>
+                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            Continue
+                        </button>
+                    </Link>
                 </div>
             </div>
         );
@@ -49,6 +51,7 @@ const MyEnrollClass = () => {
                     classes.map((classItem) => (
                         <ClassCard
                             key={classItem._id}
+                            id={classItem._id}
                             title={classItem.title}
                             name={classItem.name}
                             image={classItem.image}

@@ -21,6 +21,23 @@ const TeacherClassDetails = () => {
         }
     });
 
+    const { data: assignmentStat = [], isPending: statPending } = useQuery({
+        queryKey: ['assignment-stat', id],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/submission-data/${id}`)
+            return res.data
+        }
+    })
+    const { data: totalAssignment = [], isPending: dayPending, refetch: totalRefetch } = useQuery({
+        queryKey: ['total-assignment', id],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/assignments-count/${id}`)
+            return res.data
+        }
+    })
+
+    console.log(assignmentStat, totalAssignment)
+
     const { register, handleSubmit, reset } = useForm();
 
     const mutation = useMutation({
@@ -28,6 +45,7 @@ const TeacherClassDetails = () => {
         onSuccess: () => {
             refetch();
             reset();
+            totalRefetch();
             setOpen(false);
             swal({
                 title: "Assignment added Successfully!",
@@ -46,7 +64,7 @@ const TeacherClassDetails = () => {
 
     const today = new Date().toISOString().split('T')[0];
 
-    if (isLoading) {
+    if (isLoading || statPending || dayPending) {
         return <LoadingPage />;
     }
 
@@ -69,7 +87,7 @@ const TeacherClassDetails = () => {
                             <FaTasks className="text-4xl mr-4" />
                             <div>
                                 <h2 className="card-title">Total Assignments</h2>
-                                <p className="text-3xl">{aClass[0]?.total_assignments || 0}</p>
+                                <p className="text-3xl">{totalAssignment.totalAssignments}</p>
                             </div>
                         </div>
                     </div>
@@ -78,7 +96,7 @@ const TeacherClassDetails = () => {
                             <FaCalendarDay className="text-4xl mr-4" />
                             <div>
                                 <h2 className="card-title">Per Day Submissions</h2>
-                                <p className="text-3xl">{aClass[0]?.per_day_submissions || 0}</p>
+                                <p className="text-3xl">{assignmentStat.submissionsPerDate}</p>
                             </div>
                         </div>
                     </div>

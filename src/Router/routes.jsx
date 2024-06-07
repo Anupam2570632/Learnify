@@ -23,6 +23,7 @@ import MyOrders from "../pages/MyOrders/MyOrders";
 import MyClass from "../pages/MyClass/MyClass";
 import UpdateClass from "../pages/UpdateClass/UpdateClass";
 import TeacherClassDetails from "../pages/TeacherClassDetails/TeacherClassDetails";
+import StudentClassDetails from "../pages/StudentClassDetails/StudentClassDetails";
 
 const router = createBrowserRouter([
     {
@@ -101,8 +102,12 @@ const router = createBrowserRouter([
                 element: <PrivateRoute><UpdateClass /></PrivateRoute>
             },
             {
-                path:'teacherClassDetails/:id',
-                element:<PrivateRoute><TeacherClassDetails/></PrivateRoute>
+                path: 'teacherClassDetails/:id',
+                element: <PrivateRoute><TeacherClassDetails /></PrivateRoute>
+            },
+            {
+                path: 'studentClassContinue/:id',
+                element: <PrivateRoute><StudentClassDetails /></PrivateRoute>
             }
         ]
     }
