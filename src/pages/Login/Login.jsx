@@ -9,7 +9,7 @@ import {
 } from "@material-tailwind/react";
 import Lottie from 'lottie-react';
 import registerGif from '../../../public/login.json'
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
@@ -18,7 +18,9 @@ import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 const Login = () => {
     const [show, setShow] = useState(false)
     const { logIn } = useContext(AuthContext)
-    const navigate= useNavigate()
+    const navigate = useNavigate()
+    const [loading, setLoading] = useState(false)
+    const location = useLocation()
 
     const {
         register,
@@ -27,10 +29,12 @@ const Login = () => {
     } = useForm()
     const onSubmit = (data) => {
         console.log(data)
+        setLoading(true)
         logIn(data.email, data.password)
             .then(result => {
                 console.log(result.user)
-                navigate('/')
+                navigate(location?.state ? location.state : '/')
+                setLoading(false)
             })
             .catch(err => {
                 console.error(err)
@@ -51,7 +55,7 @@ const Login = () => {
                         className="mb-4 grid h-28 place-items-center"
                     >
                         <Typography variant="h3" color="white">
-                            Login Now!
+                            Log In!
                         </Typography>
                     </CardHeader>
                     <CardBody className="flex flex-col gap-4">
@@ -90,7 +94,7 @@ const Login = () => {
                             containerProps={{ className: "-ml-2.5" }}
                         />
                         <Button type="submit" className="mt-6" fullWidth>
-                            Login
+                        {loading ? <span className="loading loading-spinner loading-sm p-0 m-0 text-white "></span> : 'Login'}
                         </Button>
                         <Typography color="gray" className="mt-4 text-center font-normal">
                             Don&apos;t have an account?{" "}

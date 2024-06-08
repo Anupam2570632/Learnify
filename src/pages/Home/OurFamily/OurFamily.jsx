@@ -1,26 +1,35 @@
 import { FaUserCheck, FaUsers } from "react-icons/fa6";
 import { PiBookOpenText } from "react-icons/pi";
+import useStat from "../../../hooks/useStat";
+import LoadingPage from "../../../components/LoadingPage";
 
 const OurFamily = () => {
+    const [stat, isPending] = useStat()
+    if (isPending) {
+        return (
+            <LoadingPage />
+        )
+    }
+    console.log(stat)
     return (
         <div className="flex flex-col mt-6 md:mt-20 lg:flex-row gap-8 items-center justify-center w-11/12 md:w-4/5 mx-auto">
             <div className="lg:w-1/2 ">
                 <div className="md:flex">
                     <div className="mx-auto w-full border p-6 space-y-4">
-                        <FaUsers className="text-5xl mx-auto"/>
+                        <FaUsers className="text-5xl mx-auto" />
                         <h2 className="text-3xl font-bold text-center">Total Users</h2>
-                        <p className="text-xl font-black text-center">1233</p>
+                        <p className="text-xl font-black text-center">{stat.userCount}</p>
                     </div>
                     <div className="mx-auto w-full border p-6 space-y-4">
-                        <PiBookOpenText className="text-5xl mx-auto"/>
+                        <PiBookOpenText className="text-5xl mx-auto" />
                         <h2 className="text-3xl font-bold text-center">Total Classes</h2>
-                        <p className="text-xl font-black text-center">1233</p>
+                        <p className="text-xl font-black text-center">{stat.classCount}</p>
                     </div>
                 </div>
                 <div className="mx-auto w-full border p-6 space-y-4">
-                    <FaUserCheck className="text-5xl mx-auto"/>
+                    <FaUserCheck className="text-5xl mx-auto" />
                     <h2 className="text-3xl font-bold text-center">Total Enrollment</h2>
-                    <p className="text-xl font-black text-center">1233</p>
+                    <p className="text-xl font-black text-center">{stat.totalEnrollment}</p>
                 </div>
             </div>
             <div className="lg:w-1/2 relative my-6 md:my-20">

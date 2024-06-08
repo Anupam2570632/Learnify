@@ -1,6 +1,7 @@
 import swal from "sweetalert";
 import useClasses from "../../hooks/useClasses";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const DashAllClasses = () => {
     const axiosSecure = useAxiosSecure()
@@ -87,7 +88,11 @@ const DashAllClasses = () => {
                             <th className="flex gap-2">
                                 <button onClick={() => handleApprove(aClass._id)} disabled={aClass.status !== 'pending'} className={` font-bold ${aClass.status !== 'pending' ? 'disabled-btn' : 'text-white bg-cyan-600'} px-4 py-2 text-nowrap rounded-full`}>Approve</button>
                                 <button onClick={() => handleReject(aClass._id)} disabled={aClass.status !== 'pending'} className={` font-bold ${aClass.status !== 'pending' ? 'disabled-btn' : 'text-white bg-cyan-600'} px-4 py-2 text-nowrap rounded-full`}>Reject</button>
-                                <button disabled={aClass.status == 'pending'} className={` font-bold ${aClass.status == 'pending' ? 'disabled-btn' : 'text-white bg-cyan-600'} px-4 py-2 text-nowrap rounded-full`}>See Progress</button>
+                                <div>
+                                    <Link to={`/dashboard/adminClassDetails/${aClass._id}`}>
+                                        <button disabled={aClass.status == 'pending'} className={` font-bold ${aClass.status == 'pending' ? 'disabled-btn' : 'text-white bg-cyan-600'} px-4 py-2 text-nowrap rounded-full`}>See Progress</button>
+                                    </Link>
+                                </div>
                             </th>
                         </tr>)
                     }

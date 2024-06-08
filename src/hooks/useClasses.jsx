@@ -1,17 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "./useAxiosSecure";
+import useAxiosPublic from "./useAxiosPublic";
 
 const useClasses = () => {
-    const axiosSecure = useAxiosSecure()
+    const axiosPublic = useAxiosPublic()
     const { isPending, data: classes = [], refetch } = useQuery({
         queryKey: ['allClasses'],
         queryFn: async () => {
-            const res = await axiosSecure.get('/classes')
+            const res = await axiosPublic.get('/classes')
             return res.data;
         },
     })
 
-    
 
     return [classes, refetch]
 };

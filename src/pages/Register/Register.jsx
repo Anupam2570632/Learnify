@@ -19,6 +19,7 @@ import axios from "axios";
 const Register = () => {
     const [show, setShow] = useState(false)
     const { createUser, updateUser, logOut } = useContext(AuthContext)
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
 
     const {
@@ -27,6 +28,7 @@ const Register = () => {
         handleSubmit,
     } = useForm()
     const onSubmit = (data) => {
+        setLoading(true)
         console.log(data)
         createUser(data.email, data.password)
             .then(result => {
@@ -45,6 +47,7 @@ const Register = () => {
                         logOut()
                             .then()
                             .catch()
+                        setLoading(false)
                         navigate('/login')
                     })
                 console.log(result.user)
@@ -109,7 +112,7 @@ const Register = () => {
                             containerProps={{ className: "-ml-2.5" }}
                         />
                         <Button type="submit" className="mt-6" fullWidth>
-                            Sign Up
+                        {loading ? <span className="loading loading-spinner loading-sm p-0 m-0 text-white "></span> : 'Sign Up'}
                         </Button>
                         <Typography color="gray" className="mt-4 text-center font-normal">
                             Already have an account?{" "}

@@ -1,17 +1,20 @@
-import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useContext, useState } from "react";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingPage from "../../components/LoadingPage";
-import { FaCheck, FaStar, FaTimes } from "react-icons/fa"; // Import React icons
+import { FaCheck, FaTimes } from "react-icons/fa"; // Import React icons
 import swal from "sweetalert";
+import Rating from 'react-rating-stars-component';
+import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 
 const StudentClassDetails = () => {
     const [description, setDescription] = useState('');
-    const [rating, setRating] = useState(0);
     const [isModalOpen, setIsModalOpen] = useState(false); // State for controlling modal visibility
     const { id } = useParams();
     const axiosSecure = useAxiosSecure();
+    const { user } = useContext(AuthContext);
+    const [rating, setRating] = useState(0);
 
     const { data: assignments = [], isPending } = useQuery({
         queryKey: ['assignment', id],
@@ -21,10 +24,40 @@ const StudentClassDetails = () => {
         }
     });
 
+    const { data: aClass = [], isPending: classPending } = useQuery({
+        queryKey: ['class-from', id],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/classes?id=${id}`);
+            return res.data;
+        }
+    });
+
+    const mutation = useMutation({
+        mutationFn: async (newFeedback) => {
+            const res = await axiosSecure.post(`/feedback`, newFeedback);
+            return res.data;
+        },
+        onSuccess: () => {
+            swal({
+                title: "Feedback Submitted Successfully!",
+                icon: "success",
+                timer: 1500,
+            });
+            setIsModalOpen(false);
+        },
+        onError: (error) => {
+            swal({
+                title: "Error!",
+                text: error.message,
+                icon: "error",
+                timer: 1500,
+            });
+        },
+    });
+
     const handleSubmission = async (assignmentId) => {
         console.log("Submitting assignment with ID:", assignmentId);
-
-        const res = await axiosSecure.post(`/submit/${id}`)
+        const res = await axiosSecure.post(`/submit/${id}`);
         if (res.data.insertedId) {
             swal({
                 title: "Assignment Submitted Successfully!",
@@ -35,8 +68,18 @@ const StudentClassDetails = () => {
     };
 
     const handleSave = () => {
-        //todo
+        const newFeedback = {
+            classId: aClass[0]._id,
+            rating,
+            description,
+            userName: user?.displayName,
+            className: aClass[0].title,
+        };
+        mutation.mutate(newFeedback);
     };
+    const handleRatingChange = (newRating) => {
+        setRating(newRating)
+    }
 
     const openModal = () => {
         setIsModalOpen(true);
@@ -46,7 +89,7 @@ const StudentClassDetails = () => {
         setIsModalOpen(false);
     };
 
-    if (isPending) {
+    if (isPending || classPending) {
         return <LoadingPage />;
     }
 
@@ -74,22 +117,28 @@ const StudentClassDetails = () => {
                                             Create Teaching Evaluation Report
                                         </h3>
                                         <div className="mt-2">
-                                            <textarea
-                                                value={description}
-                                                onChange={(e) => setDescription(e.target.value)}
-                                                placeholder="Description"
-                                                className="resize-none border rounded-md w-full p-2 mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                            ></textarea>
+                                            <div>
+                                                {aClass[0].title}
+                                            </div>
+                                            <div className="w-[350px]">
+                                                <textarea
+                                                    value={description}
+                                                    onChange={(e) => setDescription(e.target.value)}
+                                                    placeholder="Description"
+                                                    className="resize-none border rounded-md w-full p-2 mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                ></textarea>
+                                            </div>
                                             <div className="flex items-center">
-                                                <FaStar className="w-6 h-6 text-yellow-500 mr-2" />
-                                                <input
-                                                    type="number"
-                                                    min="1"
-                                                    max="5"
-                                                    value={rating}
-                                                    onChange={(e) => setRating(e.target.value)}
-                                                    className="border rounded-md w-12 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                                />
+                                                <div className="flex gap-3 items-center">
+                                                    <Rating
+                                                        count={5}
+                                                        value={rating}
+                                                        onChange={handleRatingChange}
+                                                        size={24}
+                                                        activeColor="#ffd700"
+                                                    />
+                                                    <p>{rating}</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

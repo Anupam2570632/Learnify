@@ -12,14 +12,15 @@ const MyEnrollClass = () => {
         queryFn: async () => {
             const res = await axiosSecure.get(`/user-classes/${user?.email}`)
             return res.data
-        }
+        },
+        enabled: !!user?.email
     })
 
 
     const ClassCard = ({ id, title, name, image }) => {
         return (
             <div className="max-w-sm rounded overflow-hidden mx-auto shadow-lg">
-                <img className="w-full" src={image} alt={title} />
+                <img className="w-full h-[200px] object-cover object-center" src={image} alt={title} />
                 <div className="px-6 py-4">
                     <div className="font-bold text-xl mb-2">{title}</div>
                     <p className="text-gray-700 text-base">By: {name}</p>

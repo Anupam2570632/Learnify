@@ -15,6 +15,7 @@ const CheckoutForm = ({ id }) => {
     const elements = useElements()
     const [transactionId, setTransactionId] = useState('')
     const { user } = useContext(AuthContext)
+    const [loading, setLoading] = useState(false)
 
     const axiosSecure = useAxiosSecure()
     const { data = [], isPending } = useQuery({
@@ -47,7 +48,7 @@ const CheckoutForm = ({ id }) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-
+        setLoading(true)
         if (!stripe || !elements) {
             return;
         }
@@ -107,6 +108,7 @@ const CheckoutForm = ({ id }) => {
                         showConfirmButton: false,
                         timer: 1500
                     });
+                    setLoading(false)
 
                     navigate('/dashboard/myEnrolledClass')
                 }
@@ -134,7 +136,7 @@ const CheckoutForm = ({ id }) => {
                     }}
                 />
                 <button className="btn btn-sm btn-primary my-4" type="submit" disabled={!stripe || !clientSecret}>
-                    Pay
+                    {loading ? <span className="loading loading-spinner loading-sm p-0 m-0 text-white "></span> : 'PAY'}
                 </button>
                 <p className="text-red-400">{error}</p>
                 {

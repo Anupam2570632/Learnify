@@ -24,6 +24,7 @@ import MyClass from "../pages/MyClass/MyClass";
 import UpdateClass from "../pages/UpdateClass/UpdateClass";
 import TeacherClassDetails from "../pages/TeacherClassDetails/TeacherClassDetails";
 import StudentClassDetails from "../pages/StudentClassDetails/StudentClassDetails";
+import AdminClassDetails from "../pages/AdminClassDetails/AdminClassDetails";
 
 const router = createBrowserRouter([
     {
@@ -108,6 +109,10 @@ const router = createBrowserRouter([
             {
                 path: 'studentClassContinue/:id',
                 element: <PrivateRoute><StudentClassDetails /></PrivateRoute>
+            },
+            {
+                path: 'adminClassDetails/:id',
+                element: <PrivateRoute><AdminClassDetails /></PrivateRoute>
             }
         ]
     }

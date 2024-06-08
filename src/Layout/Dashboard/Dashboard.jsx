@@ -7,7 +7,7 @@ const Dashboard = () => {
             <div className="w-full z-20 xl:w-1/4 lg:fixed lg:top-0 xl:h-full">
                <SideBar/>
             </div>
-            <div className="w-full xl:w-3/4 xl:ml-[25%]">
+            <div className="w-full xl:w-3/4 xl:ml-[25%] py-4 md:py-20">
                 <Outlet />
             </div>
         </div>
