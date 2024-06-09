@@ -32,15 +32,23 @@ const DashAllClasses = () => {
                 }
             });
     }
-    const handleReject = (id) => {
+    const handleReject =async (id) => {
         swal({
             title: "Are you want to reject the class?",
             icon: "warning",
             buttons: true,
             dangerMode: true,
         })
-            .then((willDelete) => {
+            .then(async(willDelete) => {
                 if (willDelete) {
+                    const res = await axiosSecure.patch(`/class/${id}`, reject)
+                    console.log(res.data)
+                    if (res.data.modifiedCount > 0) {
+                        swal("Class Rejected!", {
+                            icon: "success",
+                        });
+                        refetch()
+                    }
                     console.log(id)
                     swal("Class Rejected!", {
                         icon: "success",

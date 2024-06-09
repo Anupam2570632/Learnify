@@ -73,6 +73,7 @@ const StudentClassDetails = () => {
             rating,
             description,
             userName: user?.displayName,
+            userImage: user.photoURL,
             className: aClass[0].title,
         };
         mutation.mutate(newFeedback);

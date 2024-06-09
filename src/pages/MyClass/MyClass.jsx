@@ -44,10 +44,10 @@ const MyClass = () => {
     }
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 justify-center gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 mx-auto xl:grid-cols-3 items-center justify-center gap-6">
             {classes.map((aClass, idx) => (
-                <div key={idx} className="  mx-auto bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden">
-                    <img src={aClass.image} alt={aClass.title} className="w-full h-48 object-cover" />
+                <div key={idx} className="max-w-[380px] mx-auto bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden">
+                    <img src={aClass.image} alt={aClass.title} className="w-full h-60 object-cover object-center" />
                     <div className="p-4">
                         <h3 className="text-xl font-semibold mb-2">{aClass.title}</h3>
                         <p className="text-gray-600 mb-1"><strong>Name:</strong> {aClass.name}</p>
@@ -62,10 +62,10 @@ const MyClass = () => {
                         <p className="text-gray-600 mb-4"><strong>Status:</strong> {aClass.status}</p>
                         <div className="divider"></div>
                         <div className="flex justify-between space-x-2">
-                            <div>
+                            <div className="flex-1">
                                 <Link to={`/dashboard/updateClass/${aClass._id}`}>
                                     <button
-                                        className="flex-1 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+                                        className="flex-1 px-4 w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
                                     >
                                         Update
                                     </button>
@@ -73,15 +73,15 @@ const MyClass = () => {
                             </div>
                             <button
                                 onClick={() => handleDelete(aClass._id)}
-                                className="flex-1 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                                className="flex-1 w-full px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
                             >
                                 Delete
                             </button>
-                            <div>
+                            <div className="flex-1">
                                 <Link to={`/dashboard/teacherClassDetails/${aClass._id}`}>
                                     <button
                                         disabled={aClass.status !== 'accepted'}
-                                        className={`flex-1 px-4 py-2 text-nowrap ${aClass.status !== 'accepted' ? 'disabled-btn' : 'bg-gray-500 text-white  hover:bg-gray-600'} rounded-lg`}
+                                        className={`flex-1 w-full px-4 py-2 text-nowrap ${aClass.status !== 'accepted' ? 'disabled-btn' : 'bg-gray-500 text-white  hover:bg-gray-600'} rounded-lg`}
                                     >
                                         See details
                                     </button>

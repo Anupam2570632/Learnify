@@ -3,7 +3,7 @@ import SideBar from "../../pages/SideBar/SideBar";
 
 const Dashboard = () => {
     return (
-        <div className="flex gap-10 flex-col xl:flex-row font-cinezal">
+        <div className="flex flex-col xl:flex-row font-cinezal">
             <div className="w-full z-20 xl:w-1/4 lg:fixed lg:top-0 xl:h-full">
                <SideBar/>
             </div>

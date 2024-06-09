@@ -13,6 +13,8 @@ const Profile = () => {
             .then(res => setDbUser(res.data));
     }, [user?.email, axiosSecure]);
 
+    console.log(dbUser)
+
 
     return (
         <div className="container mx-auto my-20">

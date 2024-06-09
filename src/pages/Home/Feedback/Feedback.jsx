@@ -10,6 +10,7 @@ import 'swiper/css/navigation';
 // import required modules
 import { Autoplay, Navigation } from 'swiper/modules';
 import { BiSolidQuoteAltRight } from 'react-icons/bi';
+import { Rating } from '@material-tailwind/react';
 
 export default function Feedback() {
 
@@ -37,8 +38,11 @@ export default function Feedback() {
                     feedback.map((text, idx) => <SwiperSlide key={idx}>
                         <div className='text-center flex items-center justify-center space-y-6 flex-col'>
                             <h2 className='text-4xl md:text-7xl text-green-400 font-bold'><BiSolidQuoteAltRight /></h2>
-                            <h2 className='text-xl font-black underline underline-offset-[7px]'>{text.classTitle}</h2>
-                            <p className='max-w-[680px] italic text-xl text-black opacity-80 mx-auto text-center'>{text.feedbackText}</p>
+                            <h2 className='text-xl font-black underline underline-offset-[7px]'>{text.className}</h2>
+                            <p className='max-w-[680px] italic text-xl text-black opacity-80 mx-auto text-center'>{text.description}</p>
+                            <div>
+                                <Rating value={parseInt(text.rating)} readonly />
+                            </div>
                             <img className='w-20 h-20 object-cover object-center rounded-full' src={text.userImage} alt="" />
                             <h2 className='text-xl font-black'>{text.userName}</h2>
                         </div>

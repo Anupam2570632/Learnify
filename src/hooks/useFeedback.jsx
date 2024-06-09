@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "./useAxiosPublic";
 
 const useFeedback = () => {
-    const [feedback, setFeedback] = useState([])
-    useEffect(() => {
-        fetch('/feedback.json')
-            .then(res => res.json())
-            .then(data => setFeedback(data))
-    }, [])
+    const axiosPublic = useAxiosPublic()
+    const { data: feedback=[], isPending } = useQuery({
+        queryKey: ['allFeedback'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/feedback')
+            return res.data
+        }
+    })
 
     return { feedback }
 };
