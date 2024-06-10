@@ -1,13 +1,15 @@
+import { Link } from "react-router-dom";
 import LoadingPage from "../../../components/LoadingPage";
 import useClasses from "../../../hooks/useClasses";
+import Btn from "../../../components/Btn";
 
 const PopularClasses = () => {
-    const status ='accepted'
+    const status = 'accepted'
     const [classes, refetch, classPending] = useClasses(status)
     const sortedClasses = [...classes].sort((a, b) => b.total_enrollment - a.total_enrollment);
-    if(classPending){
-        return(
-            <LoadingPage/>
+    if (classPending) {
+        return (
+            <LoadingPage />
         )
     }
     // console.log(classes)
@@ -16,7 +18,7 @@ const PopularClasses = () => {
             <h1 className="text-center text-4xl font-black">Popular Classes</h1>
             <div className="carousel carousel-center rounded-box ">
                 {
-                    sortedClasses.slice(0,6).map((oneClass, idx) => <div key={idx} className="relative carousel-item ml-4">
+                    sortedClasses.slice(0, 6).map((oneClass, idx) => <div key={idx} className="relative carousel-item ml-4">
                         <img className="w-[400px] h-[450px] object-cover object-center" src={oneClass.image} alt="Pizza" />
                         <div className="absolute inset-0 bg-black bg-opacity-40 space-y-4 p-6">
                             <h1 className="text-xl font-bold text-white underline underline-offset-8">{oneClass.title}</h1>
@@ -26,6 +28,11 @@ const PopularClasses = () => {
                 }
 
 
+            </div>
+            <div className="flex items-center justify-center py-4">
+                <Link to={'/allClasses'}>
+                    <Btn text={'See All Clsses'} />
+                </Link>
             </div>
         </div>
     );
