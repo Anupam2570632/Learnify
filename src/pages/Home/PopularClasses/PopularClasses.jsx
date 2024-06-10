@@ -10,7 +10,7 @@ const PopularClasses = () => {
             <LoadingPage/>
         )
     }
-    console.log(classes)
+    // console.log(classes)
     return (
         <div className="my-6 md:my-20 space-y-6 w-11/12 md:w-4/5 mx-auto">
             <h1 className="text-center text-4xl font-black">Popular Classes</h1>

@@ -38,7 +38,7 @@ const MyOrders = () => {
     if (isError) {
         return <p>Error fetching orders.</p>;
     }
-    console.log(orders)
+    // console.log(orders)
     return (
         <div className="w-1/2 mx-auto">
             <h1 className="text-center text-xl font-bold">My Orders</h1>

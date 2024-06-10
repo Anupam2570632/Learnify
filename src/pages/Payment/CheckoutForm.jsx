@@ -36,7 +36,7 @@ const CheckoutForm = ({ id }) => {
 
 
     const totalPrice = parseFloat(aClass?.price);
-    console.log(totalPrice)
+    // console.log(totalPrice)
     useEffect(() => {
         if (totalPrice > 0) {
             axiosSecure.post('/create-payment-intent', { price: totalPrice })
@@ -67,11 +67,11 @@ const CheckoutForm = ({ id }) => {
         })
         if (error) {
             setLoading(false)
-            console.log('payment error', error)
+            // console.log('payment error', error)
             setError(error.message)
         }
         else {
-            console.log('payment-method', paymentMethod)
+            // console.log('payment-method', paymentMethod)
             setLoading(false)
             setError('')
         }
@@ -87,12 +87,12 @@ const CheckoutForm = ({ id }) => {
         })
         if (confirmError) {
             setLoading(false)
-            console.log('confirm-error', confirmError)
+            // console.log('confirm-error', confirmError)
         }
         else {
-            console.log('payment intent', paymentIntent)
+            // console.log('payment intent', paymentIntent)
             if (paymentIntent.status === 'succeeded') {
-                console.log('transactionId', paymentIntent.id)
+                // console.log('transactionId', paymentIntent.id)
                 setTransactionId(paymentIntent.id)
 
                 const payment = {
@@ -104,7 +104,7 @@ const CheckoutForm = ({ id }) => {
                 }
 
                 const res = await axiosSecure.post('/payment', payment)
-                console.log('payment-saved', res.data)
+                // console.log('payment-saved', res.data)
                 if (res.data?.paymentResult?.insertedId) {
                     Swal({
                         position: "top-end",

@@ -37,7 +37,7 @@ const TeacherClassDetails = () => {
         refetchOnMount: true
     })
 
-    console.log(assignmentStat, totalAssignment)
+    // console.log(assignmentStat, totalAssignment)
 
     const { register, handleSubmit, reset } = useForm();
 

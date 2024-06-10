@@ -56,7 +56,7 @@ const StudentClassDetails = () => {
     });
 
     const handleSubmission = async (assignmentId) => {
-        console.log("Submitting assignment with ID:", assignmentId);
+        // console.log("Submitting assignment with ID:", assignmentId);
         const res = await axiosSecure.post(`/submit/${id}`);
         if (res.data.insertedId) {
             swal({

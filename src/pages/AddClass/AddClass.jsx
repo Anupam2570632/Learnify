@@ -27,7 +27,7 @@ const AddClass = () => {
         },
         onSuccess: () => {
             // Handle successful mutation
-            console.log("Class added successfully");
+            // console.log("Class added successfully");
             swal({
                 title: "Class Added Successfully!",
                 icon: "success",
@@ -45,7 +45,7 @@ const AddClass = () => {
     const onSubmit = (data) => {
         setLoading(true)
         // Submit class data to MongoDB
-        console.log(data);
+        // console.log(data);
         const aClass = {
             ...data,
             status: 'pending'

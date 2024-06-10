@@ -32,7 +32,7 @@ const MyClass = () => {
             .then(async (willDelete) => {
                 if (willDelete) {
                     const res = await axiosSecure.delete(`/class/${id}`)
-                    console.log(res.data)
+                    // console.log(res.data)
                     if (res.data.deletedCount > 0) {
                         swal("Deleted Successfully!", {
                             icon: "success",

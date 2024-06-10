@@ -13,7 +13,7 @@ import LoadingPage from "../../components/LoadingPage";
 const UpdateClass = () => {
     const { user } = useContext(AuthContext);
     const { id } = useParams();
-    console.log(id)
+    // console.log(id)
     const [loading, setLoading]= useState(false)
     const navigate = useNavigate()
 

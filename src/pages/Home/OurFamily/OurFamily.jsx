@@ -10,7 +10,7 @@ const OurFamily = () => {
             <LoadingPage />
         )
     }
-    console.log(stat)
+    // console.log(stat)
     return (
         <div className="flex flex-col mt-6 md:mt-20 lg:flex-row gap-8 items-center justify-center w-11/12 md:w-4/5 mx-auto">
             <div className="lg:w-1/2 ">

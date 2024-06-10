@@ -35,11 +35,11 @@ const Login = () => {
     } = useForm()
     const onSubmit = (data) => {
         setError('')
-        console.log(data)
+        // console.log(data)
         setLoading(true)
         logIn(data.email, data.password)
             .then(result => {
-                console.log(result.user)
+                // console.log(result.user)
                 toast.success('Login successfully!');
                 navigate(location?.state ? location.state : '/')
                 setLoading(false)
@@ -68,7 +68,7 @@ const Login = () => {
                             toast.success('Login successfully!')
                             }
                         navigate(location?.state ? location.state : '/')
-                        console.log(result.user)
+                        // console.log(result.user)
                     })
             })
             .catch(err => {

@@ -33,7 +33,7 @@ const Register = () => {
     const onSubmit = (data) => {
         setError('')
         setLoading(true)
-        console.log(data)
+        // console.log(data)
         createUser(data.email, data.password)
             .then(result => {
                 updateUser(data.name, data.photoURL)
@@ -48,7 +48,7 @@ const Register = () => {
 
                         axiosPublic.post('/users', user)
                             .then(res => console.log(res.data))
-                        console.log('update user success')
+                        // console.log('update user success')
                         logOut()
                             .then()
                             .catch()
@@ -56,7 +56,7 @@ const Register = () => {
                         toast.success('Account created successfully!');
                         navigate('/login')
                     })
-                console.log(result.user)
+                // console.log(result.user)
             })
             .catch(err => {
                 console.error(err)

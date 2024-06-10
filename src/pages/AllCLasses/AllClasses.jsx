@@ -81,7 +81,7 @@ const AllClasses = () => {
                     ))
                 }
             </div>
-            <div className="flex items-center gap-4 justify-center my-10">
+            <div className={`flex items-center gap-4 justify-center my-10 ${search !== '' ? 'hidden' : ''}`}>
                 <IconButton
                     disabled={currentPage === 1}
                     onClick={() => {

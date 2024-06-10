@@ -119,10 +119,10 @@ const AllUsers = () => {
         <div>
             <div className="mb-4 max-w-[300px] mx-auto">
                 <form onSubmit={handleSearch} className="flex gap-2">
-                    <Input 
-                        type="text" 
-                        label="Search by name..." 
-                        value={searchTerm} 
+                    <Input
+                        type="text"
+                        label="Search by name..."
+                        value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
                     <Button type="submit">Search</Button>
@@ -141,7 +141,7 @@ const AllUsers = () => {
                     </thead>
                     <tbody>
                         {
-                            users.length ===0 && <h1 className="text-2xl font-bold text-red-500 text-center">no users found </h1>
+                            users.length === 0 && <h1 className="text-2xl font-bold text-red-500 text-center">no users found </h1>
                         }
                         {users.map((user, idx) => (
                             <tr key={idx}>
@@ -171,7 +171,7 @@ const AllUsers = () => {
                     </tbody>
                 </table>
             </div>
-            <div className="">
+            <div className={`${search !== '' ? 'hidden' : ''}`}>
                 <DefaultPagination totalPages={totalPages} />
             </div>
         </div>

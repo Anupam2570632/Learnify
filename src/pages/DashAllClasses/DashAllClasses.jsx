@@ -41,7 +41,7 @@ const DashAllClasses = () => {
             .then(async (willDelete) => {
                 if (willDelete) {
                     const res = await axiosSecure.patch(`/class/${id}`, approve)
-                    console.log(res.data)
+                    // console.log(res.data)
                     if (res.data.modifiedCount > 0) {
                         swal("Class Approved!", {
                             icon: "success",
@@ -61,14 +61,14 @@ const DashAllClasses = () => {
             .then(async(willDelete) => {
                 if (willDelete) {
                     const res = await axiosSecure.patch(`/class/${id}`, reject)
-                    console.log(res.data)
+                    // console.log(res.data)
                     if (res.data.modifiedCount > 0) {
                         swal("Class Rejected!", {
                             icon: "success",
                         });
                         refetch()
                     }
-                    console.log(id)
+                    // console.log(id)
                     swal("Class Rejected!", {
                         icon: "success",
                     });

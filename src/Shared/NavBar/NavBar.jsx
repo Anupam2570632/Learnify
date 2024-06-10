@@ -4,6 +4,7 @@ import Btn from "../../components/Btn";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import logo from '../../assets/logoLearnify.png'
+import { toast } from "react-toastify";
 
 const NavBar = () => {
 
@@ -16,7 +17,9 @@ const NavBar = () => {
 
     const handleLogOut = () => {
         logOut()
-            .then()
+            .then(()=>{
+                toast.success('Sign out successfully')
+            })
             .catch()
     }
 

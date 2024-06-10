@@ -21,7 +21,7 @@ const AdminClassDetails = () => {
             <LoadingPage />
         )
     }
-    console.log(feedback)
+    // console.log(feedback)
 
     if (!feedback.length) {
         return (

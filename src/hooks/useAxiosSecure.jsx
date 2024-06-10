@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider/AuthProvider";
+import { toast } from "react-toastify";
 
 const axiosSecure = axios.create({
     baseURL: 'https://a-12-server-alpha.vercel.app/'
@@ -27,6 +28,9 @@ const useAxiosSecure = () => {
         const status = error?.response?.status;
         if (status === 401 || status === 403) {
             await logOut()
+            .then(()=>{
+                toast.success('Sign out successfully')
+            })
             navigate('/login');
         }
 

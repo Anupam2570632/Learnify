@@ -38,7 +38,7 @@ const MyEnrollClass = () => {
         );
     };
 
-    console.log(classes)
+    // console.log(classes)
     if (classes.length == 0) {
         return (
             <div className="w-full">
