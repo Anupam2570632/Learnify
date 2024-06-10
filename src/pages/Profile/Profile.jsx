@@ -17,8 +17,8 @@ const Profile = () => {
 
 
     return (
-        <div className="container mx-auto my-20">
-            <div className="max-w-lg mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+        <div className="container mx-auto">
+            <div className="max-w-xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
                 <div className="px-6 py-4">
                     <h1 className="text-3xl font-bold text-gray-900 text-center">
                         <FaUserCircle className="inline-block mb-1" /> Welcome, {user.displayName}!
@@ -41,7 +41,7 @@ const Profile = () => {
                             <FaEnvelope className="inline-block mb-1 mr-1" /> {user.email}
                         </p>
                         <p className="mt-2 text-sm text-gray-600">
-                            <FaPhone className="inline-block mb-1 mr-1" /> {user?.phone}
+                            <FaPhone className="inline-block mb-1 mr-1" /> {dbUser[0]?.contactNumber || 'hidden'}
                         </p>
                     </div>
                 </div>

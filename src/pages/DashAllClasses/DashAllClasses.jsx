@@ -2,10 +2,29 @@ import swal from "sweetalert";
 import useClasses from "../../hooks/useClasses";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
+import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
+import { IconButton } from "@material-tailwind/react";
+import { useEffect, useState } from "react";
+import useStat from "../../hooks/useStat";
+import LoadingPage from "../../components/LoadingPage";
 
 const DashAllClasses = () => {
     const axiosSecure = useAxiosSecure()
-    const [classes, refetch] = useClasses()
+    const [stat]= useStat()
+    const [currentPage, setCurrentPage] = useState(1);
+    const pageSize = 10;
+
+    const [classes, refetch, classPending] = useClasses(currentPage, pageSize);
+
+
+    useEffect(() => {
+        refetch();
+    }, [currentPage, refetch]); // Refetch data when search or pagination changes
+
+    const totalPages = Math.ceil(stat.allClassCount / 10);
+
+
+
     const approve = {
         status: 'accepted'
     }
@@ -56,6 +75,13 @@ const DashAllClasses = () => {
                 }
             });
     }
+
+    if(classPending){
+        return(
+            <LoadingPage/>
+        )
+    }
+
     return (
         <div className="overflow-x-auto p-4 md:p-10">
             <table className="table">
@@ -107,6 +133,27 @@ const DashAllClasses = () => {
 
                 </tbody>
             </table>
+            <div className="flex items-center gap-4 justify-center my-10">
+                <IconButton
+                    disabled={currentPage === 1}
+                    onClick={() => {
+                        setCurrentPage(currentPage - 1);
+                    }}
+                >
+                    <ArrowLeftIcon className="h-6 w-6" />
+                </IconButton>
+                <p>
+                    Page {currentPage} of {totalPages}
+                </p>
+                <IconButton
+                    disabled={currentPage === totalPages}
+                    onClick={() => {
+                        setCurrentPage(currentPage + 1);
+                    }}
+                >
+                    <ArrowRightIcon className="h-6 w-6" />
+                </IconButton>
+            </div>
         </div>
     );
 };

@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
+import Btn from "../../components/Btn";
 
 const MyEnrollClass = () => {
     const { user } = useContext(AuthContext)
@@ -15,6 +16,7 @@ const MyEnrollClass = () => {
         },
         enabled: !!user?.email
     })
+
 
 
     const ClassCard = ({ id, title, name, image }) => {
@@ -37,6 +39,20 @@ const MyEnrollClass = () => {
     };
 
     console.log(classes)
+    if (classes.length == 0) {
+        return (
+            <div className="w-full">
+                <h2 className="text-2xl font-bold text-center text-blue-600">
+                    You haven&apos;t buy any class yet!
+                </h2>
+                <div className="w-full flex py-6 items-center justify-center">
+                    <Link to={'/allClasses'}>
+                        <Btn text={'See All Classes'}/>
+                    </Link>
+                </div>
+            </div>
+        )
+    }
     return (
         <div className="container mx-auto px-4 lg:p-14">
             <div className="flex my-4 items-center justify-between">

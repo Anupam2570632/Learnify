@@ -1,19 +1,21 @@
 import {
     CardHeader, CardBody, CardFooter, Typography, Input, Button, Textarea
 } from "@material-tailwind/react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import swal from "sweetalert";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import LoadingPage from "../../components/LoadingPage";
 
 const UpdateClass = () => {
     const { user } = useContext(AuthContext);
     const { id } = useParams();
     console.log(id)
+    const [loading, setLoading]= useState(false)
+    const navigate = useNavigate()
 
     const axiosSecure = useAxiosSecure();
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -30,6 +32,8 @@ const UpdateClass = () => {
                 icon: "success",
                 timer: 1500,
             });
+            setLoading(false)
+            navigate('/dashboard/myClass')
             refetch()
         },
         onError: (error) => {
@@ -50,6 +54,7 @@ const UpdateClass = () => {
     }
 
     const onSubmit = (data) => {
+        setLoading(true)
         const updatedClass = {
             ...data,
             total_enrollment: aClass[0].total_enrollment,
@@ -59,7 +64,7 @@ const UpdateClass = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="max-w-[900px] mx-auto md:p-20">
+        <form onSubmit={handleSubmit(onSubmit)} className="max-w-[900px] mx-auto md:px-20">
             <CardHeader
                 variant="gradient"
                 className="mb-4 grid bg-[#002244] h-28 place-items-center"
@@ -136,7 +141,7 @@ const UpdateClass = () => {
             </CardBody>
             <CardFooter className="pt-0">
                 <Button type="submit" className="mt-6 bg-[#002244]" fullWidth>
-                    Update Class
+                    {loading ? <span className="loading loading-spinner loading-sm p-0 m-0 text-white "></span> : 'Update Class'}
                 </Button>
             </CardFooter>
         </form>

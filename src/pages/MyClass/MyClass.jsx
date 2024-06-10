@@ -42,6 +42,15 @@ const MyClass = () => {
                 }
             });
     }
+    if (classes.length == 0) {
+        return (
+            <div className="">
+                <h2 className="text-2xl font-bold text-center text-blue-600">
+                    You haven&apos;t add any class yet!
+                </h2>
+            </div>
+        )
+    }
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 mx-auto xl:grid-cols-3 items-center justify-center gap-6">

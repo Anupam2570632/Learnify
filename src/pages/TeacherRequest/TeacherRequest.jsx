@@ -1,15 +1,32 @@
-import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import LoadingPage from "../../components/LoadingPage";
+import useStat from "../../hooks/useStat";
+import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
+import { IconButton } from "@material-tailwind/react";
+import { useState } from "react";
 
 const TeacherRequest = () => {
-    const [requests, setRequests] = useState([])
     const axiosSecure = useAxiosSecure()
-    useEffect(() => {
-        axiosSecure.get('/teacherRequest')
-            .then(res => {
-                setRequests(res.data)
-            })
-    }, [axiosSecure])
+    const [stat] = useStat()
+    const [currentPage, setCurrentPage] = useState(1);
+    const pageSize = 10;
+
+    const totalPages = Math.ceil(stat.requestCount / 10);
+
+
+    const { data: requests = [], isPending } = useQuery({
+        queryKey: ['teacher-requests'],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/teacherRequest?page=${currentPage}&size=${pageSize}`)
+            return res.data
+        }
+    })
+    if (isPending) {
+        return (
+            <LoadingPage />
+        )
+    }
     const reject = {
         status: 'rejected'
     }
@@ -79,12 +96,33 @@ const TeacherRequest = () => {
                                 </td>
                                 <th className="flex gap-2">
                                     <button disabled={req.status !== 'pending'} onClick={() => handleMakeApprove(req._id, req.email)} className={`font-bold ${req.status !== 'pending' ? 'disabled-btn' : 'bg-cyan-600 text-white'} px-4 py-2 rounded-full flex-1`}>Approve</button>
-                                    <button disabled={req.status !== 'pending'} onClick={() => handleMakeReject(req._id, req.email)} className={`font-bold ${req.status !== 'pending' ? 'disabled-btn' : 'bg-cyan-600 text-white'} px-4 py-2 rounded-full flex-1`}>Reject</button>
+                                    <button disabled={req.status !== 'pending'} onClick={() => handleMakeReject(req._id)} className={`font-bold ${req.status !== 'pending' ? 'disabled-btn' : 'bg-cyan-600 text-white'} px-4 py-2 rounded-full flex-1`}>Reject</button>
                                 </th>
                             </tr>)
                         }
                     </tbody>
                 </table>
+            </div>
+            <div className="flex items-center gap-4 justify-center my-10">
+                <IconButton
+                    disabled={currentPage === 1}
+                    onClick={() => {
+                        setCurrentPage(currentPage - 1);
+                    }}
+                >
+                    <ArrowLeftIcon className="h-6 w-6" />
+                </IconButton>
+                <p>
+                    Page {currentPage} of {totalPages}
+                </p>
+                <IconButton
+                    disabled={currentPage === totalPages}
+                    onClick={() => {
+                        setCurrentPage(currentPage + 1);
+                    }}
+                >
+                    <ArrowRightIcon className="h-6 w-6" />
+                </IconButton>
             </div>
         </div>
     );

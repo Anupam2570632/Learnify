@@ -23,7 +23,7 @@ const OurFamily = () => {
                     <div className="mx-auto w-full border p-6 space-y-4">
                         <PiBookOpenText className="text-5xl mx-auto" />
                         <h2 className="text-3xl font-bold text-center">Total Classes</h2>
-                        <p className="text-xl font-black text-center">{stat.classCount}</p>
+                        <p className="text-xl font-black text-center">{stat.allClassCount}</p>
                     </div>
                 </div>
                 <div className="mx-auto w-full border p-6 space-y-4">

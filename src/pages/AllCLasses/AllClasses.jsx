@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useClasses from "../../hooks/useClasses";
 import { Input, Button, IconButton } from "@material-tailwind/react";
@@ -10,23 +10,24 @@ const AllClasses = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [search, setSearch] = useState('');
     const [searchValue, setSearchValue] = useState('');
-    const pageSize = 6;
+    const pageSize = 10;
 
     const [stat, isPending] = useStat()
+    const status = 'accepted'
 
-    const [classes, refetch, classPending] = useClasses(currentPage, pageSize, search);
+    const [classes, refetch, classPending] = useClasses(currentPage, pageSize, search, status);
 
     const handleSearch = (e) => {
         e.preventDefault();
         setSearch(searchValue); // Set the search value when the form is submitted
-        setCurrentPage(1); 
+        setCurrentPage(1);
     };
 
     useEffect(() => {
         refetch();
-    }, [search, currentPage]); // Refetch data when search or pagination changes
+    }, [search, currentPage, refetch]); // Refetch data when search or pagination changes
 
-    const totalPages = Math.ceil(stat.classCount / 6);
+    const totalPages = Math.ceil(stat.acceptedClassCount / 10);
 
     if (classPending || isPending) {
         return <LoadingPage />;
@@ -43,6 +44,9 @@ const AllClasses = () => {
                 />
                 <Button type="submit">Search</Button>
             </form>
+                {
+                    classes.length === 0 && <h1 className="text-2xl font-bold text-red-500 text-center py-6">no class found. </h1>
+                }
             <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-11/12 md:w-4/5 mx-auto">
                 {
                     classes.map((aClass, idx) => (

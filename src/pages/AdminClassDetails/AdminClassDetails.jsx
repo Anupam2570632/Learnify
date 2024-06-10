@@ -25,8 +25,8 @@ const AdminClassDetails = () => {
 
     if (!feedback.length) {
         return (
-            <div className="h-full w-full flex items-center justify-center text-3xl font-bold">
-                No feedback on this class!
+            <div className="h-full w-full flex items-center justify-center text-2xl text-blue-400 font-bold">
+                No feedback found on this class!
             </div>
         )
     }

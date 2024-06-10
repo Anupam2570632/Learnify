@@ -50,12 +50,14 @@ const CheckoutForm = ({ id }) => {
         event.preventDefault()
         setLoading(true)
         if (!stripe || !elements) {
+            setLoading(false)
             return;
         }
 
         const card = elements.getElement(CardElement)
 
         if (card === null) {
+            setLoading(false)
             return;
         }
 
@@ -64,11 +66,13 @@ const CheckoutForm = ({ id }) => {
             card
         })
         if (error) {
+            setLoading(false)
             console.log('payment error', error)
             setError(error.message)
         }
         else {
             console.log('payment-method', paymentMethod)
+            setLoading(false)
             setError('')
         }
 
@@ -82,6 +86,7 @@ const CheckoutForm = ({ id }) => {
             }
         })
         if (confirmError) {
+            setLoading(false)
             console.log('confirm-error', confirmError)
         }
         else {
@@ -117,8 +122,8 @@ const CheckoutForm = ({ id }) => {
     }
 
     return (
-        <div className="flex items-center justify-center p-24">
-            <form className="min-w-[700px]" onSubmit={handleSubmit}>
+        <div className="flex items-center justify-center md:py-24">
+            <form className="min-w-[400px] space-y-6 m-10 bg-gray-100 p-6 border border-cyan-300 rounded-lg" onSubmit={handleSubmit}>
                 <CardElement
                     options={{
                         style: {

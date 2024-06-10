@@ -2,17 +2,19 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import swal from "sweetalert";
 
 const TechOn = () => {
     const { user } = useContext(AuthContext);
-    const [status, setStatus] = useState('')
+    const [status, setStatus] = useState('');
     const [requestArray, setRequestArray] = useState([]);
+    const [triggerFetch, setTriggerFetch] = useState(false); // State variable to trigger useEffect
     const { register, formState: { errors }, handleSubmit, setValue } = useForm();
-    // console.log(status)
-    const axiosSecure = useAxiosSecure()
+    const axiosSecure = useAxiosSecure();
+
     useEffect(() => {
         if (user?.email) {
-            axiosSecure.get(`http://localhost:5000/teacherRequest?email=${user.email}`)
+            axiosSecure.get(`/teacherRequest?email=${user.email}`)
                 .then(res => {
                     setRequestArray(res.data);
                     if (res.data.length > 0) {
@@ -20,14 +22,12 @@ const TechOn = () => {
                         setValue("experience", req.experience);
                         setValue("title", req.title);
                         setValue("category", req.category);
-                        setStatus(req.status)
+                        setStatus(req.status);
                     }
                 })
                 .catch(error => console.error('Error fetching teacher request:', error));
         }
-    }, [user?.email, setValue, axiosSecure]);
-
-    // console.log(requestArray, requestArray.length)
+    }, [user?.email, setValue, axiosSecure, triggerFetch]); // Add triggerFetch to the dependency array
 
     const onSubmit = (data) => {
         const teacher = {
@@ -35,33 +35,38 @@ const TechOn = () => {
             status: 'pending',
             photoURL: user.photoURL
         };
-        const another = {
-            status: 'pending'
-        }
-        console.log(status)
+
         if (status) {
-            const id = requestArray[0]._id
-            console.log(id)
-            axiosSecure.patch(`/teacherRequest/${id}`, another)
+            const id = requestArray[0]._id;
+            axiosSecure.put(`/teacherRequest/${id}`, teacher)
                 .then(res => {
-                    console.log(res.data)
+                    if (res.data.modifiedCount > 0) {
+                        swal("Request sent!", {
+                            icon: "success",
+                        });
+                        setTriggerFetch(!triggerFetch); // Toggle triggerFetch state
+                    }
                 })
-        }
-        else {
-            axiosSecure.post('http://localhost:5000/teacherRequest', teacher)
+                .catch(error => console.error('Error updating teacher request:', error));
+        } else {
+            axiosSecure.post('/teacherRequest', teacher)
                 .then(res => {
-                    console.log('Submission response:', res.data);
+                    if (res.data.insertedId) {
+                        swal("Request sent!", {
+                            icon: "success",
+                        });
+                        setTriggerFetch(!triggerFetch); // Toggle triggerFetch state
+                    }
                 })
                 .catch(error => console.error('Error submitting teacher request:', error));
         }
     };
 
-
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-100">
             {requestArray && requestArray.length > 0 && requestArray[0].status === 'accepted' ? (
                 <div>
-                    <h1>Your request has been accepted</h1>
+                    <h1>Your request has been accepted.</h1>
                 </div>
             ) : (
                 <form onSubmit={handleSubmit(onSubmit)} className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
@@ -141,14 +146,13 @@ const TechOn = () => {
                     <button
                         disabled={requestArray.length && status !== 'rejected'}
                         type="submit"
-                        className='w-full bg-cyan-600 rounded-full text-white py-2'
+                        className={`w-full ${(requestArray.length && status !== 'rejected') ? 'disabled-btn' : 'text-white bg-cyan-600'} rounded-full  py-2`}
                     >
                         {status !== 'rejected' ? 'Submit For Review' : 'Request to Another'}
                     </button>
                 </form>
-            )
-            }
-        </div >
+            )}
+        </div>
     );
 };
 

@@ -96,8 +96,8 @@ const StudentClassDetails = () => {
 
     return (
         <div>
-            <button onClick={openModal} className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                TER
+            <button onClick={openModal} className="bg-blue-600 my-6 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Evaluate Class
             </button>
             {isModalOpen && (
                 <div className="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">

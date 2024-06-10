@@ -1,5 +1,7 @@
 import { Outlet } from "react-router-dom";
 import SideBar from "../../pages/SideBar/SideBar";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Dashboard = () => {
     return (
@@ -10,6 +12,7 @@ const Dashboard = () => {
             <div className="w-full xl:w-3/4 xl:ml-[25%] py-4 md:py-20">
                 <Outlet />
             </div>
+            <ToastContainer />
         </div>
     );
 };

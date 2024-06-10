@@ -140,6 +140,9 @@ const AllUsers = () => {
                         </tr>
                     </thead>
                     <tbody>
+                        {
+                            users.length ===0 && <h1 className="text-2xl font-bold text-red-500 text-center">no users found </h1>
+                        }
                         {users.map((user, idx) => (
                             <tr key={idx}>
                                 <th>{(currentPage - 1) * pageSize + idx + 1}</th>

@@ -33,7 +33,8 @@ const TeacherClassDetails = () => {
         queryFn: async () => {
             const res = await axiosSecure.get(`/assignments-count/${id}`)
             return res.data
-        }
+        },
+        refetchOnMount: true
     })
 
     console.log(assignmentStat, totalAssignment)
@@ -78,7 +79,7 @@ const TeacherClassDetails = () => {
                             <FaUserGraduate className="text-4xl mr-4" />
                             <div>
                                 <h2 className="card-title">Total Enrollment</h2>
-                                <p className="text-3xl">{aClass[0]?.total_enrollment || 0}</p>
+                                <p className="text-3xl w-full text-center">{aClass[0]?.total_enrollment || 0}</p>
                             </div>
                         </div>
                     </div>
@@ -87,7 +88,7 @@ const TeacherClassDetails = () => {
                             <FaTasks className="text-4xl mr-4" />
                             <div>
                                 <h2 className="card-title">Total Assignments</h2>
-                                <p className="text-3xl">{totalAssignment.totalAssignments}</p>
+                                <p className="text-3xl w-full text-center">{totalAssignment.totalAssignments}</p>
                             </div>
                         </div>
                     </div>
@@ -96,7 +97,7 @@ const TeacherClassDetails = () => {
                             <FaCalendarDay className="text-4xl mr-4" />
                             <div>
                                 <h2 className="card-title">Per Day Submissions</h2>
-                                <p className="text-3xl">{assignmentStat.submissionsPerDate}</p>
+                                <p className="text-3xl w-full text-center">{parseFloat(assignmentStat.submissionsPerDate).toFixed(2)}</p>
                             </div>
                         </div>
                     </div>

@@ -16,7 +16,7 @@ const BannerMessage = () => {
             </p>
             <Link to={'/register'} >
                 <button className="font-bold px-4 py-2 bg-cyan-600 flex items-center gap-2 my-4 text-white rounded-full text-nowrap">
-                    Sign Up
+                    Join Now
                     <FaArrowRight />
                 </button>
             </Link>

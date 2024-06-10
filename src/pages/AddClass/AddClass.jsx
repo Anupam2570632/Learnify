@@ -1,7 +1,7 @@
 import {
     CardHeader, CardBody, CardFooter, Typography, Input, Button, Textarea
 } from "@material-tailwind/react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import { useMutation } from "@tanstack/react-query";
@@ -11,7 +11,8 @@ import { useNavigate } from "react-router-dom";
 
 const AddClass = () => {
     const { user } = useContext(AuthContext);
-    const navigate= useNavigate()
+    const navigate = useNavigate()
+    const [loading, setLoading] = useState(false)
 
     const axiosSecure = useAxiosSecure();
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -32,6 +33,7 @@ const AddClass = () => {
                 icon: "success",
                 timer: 1500,
             });
+            setLoading(false)
             navigate('/dashboard/myClass')
         },
         onError: (error) => {
@@ -41,6 +43,7 @@ const AddClass = () => {
     });
 
     const onSubmit = (data) => {
+        setLoading(true)
         // Submit class data to MongoDB
         console.log(data);
         const aClass = {
@@ -51,7 +54,7 @@ const AddClass = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="max-w-[900px] mx-auto md:p-20">
+        <form onSubmit={handleSubmit(onSubmit)} className="max-w-[900px] mx-auto md:px-20">
             <CardHeader
                 variant="gradient"
                 className="mb-4 grid bg-[#002244] h-28 place-items-center"
@@ -124,7 +127,7 @@ const AddClass = () => {
             </CardBody>
             <CardFooter className="pt-0">
                 <Button type="submit" className="mt-6 bg-[#002244]" fullWidth>
-                    Add Class
+                    {loading ? <span className="loading loading-spinner loading-sm p-0 m-0 text-white "></span> : 'Add Class'}
                 </Button>
             </CardFooter>
         </form>
