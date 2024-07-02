@@ -28,7 +28,20 @@ Learnify serves as a centralized hub where educational institutions, tutors, and
 - Secure Authentication
 - Payment Integration with Stripe
 
-
+## Technologies Used
+- React.js
+- node.js
+- Firebase
+- Stripe
+- Express
+- Tailwind css
+- Lotie react
+- Swiper SLider
+- tanstack query
+- axios
+- react hook form
+- sweetalert
+- react icon
 
 
 ## To Run This Site Locally
