@@ -2,6 +2,17 @@
 
 Welcome to Learnify, your go-to platform for revolutionizing the way educational institutions, tutors, and students interact. 
 
+
+## Concept
+Learnify serves as a centralized hub where educational institutions, tutors, and students can seamlessly interact and collaborate. It provides a user-friendly environment that enhances the learning experience through intuitive features and comprehensive tools.
+
+## Problems Solved
+-  Fragmented Educational Interactions
+
+- Complex Class Management
+
+- Limited Teacher Engagement
+
 ## Admin Credentials
 
 - **Username:** admin2@learn.com
@@ -13,13 +24,27 @@ Welcome to Learnify, your go-to platform for revolutionizing the way educational
 
 ## Key Features
 
-- **Responsive Design**: Enjoy seamless access on all devices - mobile, tablet, and desktop.
-- **User-friendly Navigation**: Intuitive navbar with quick access to Home, All Classes, Teach on Learnify, and Sign In/Profile.
-- **Profile Customization**: Users can personalize their profiles with profile pictures, accessible through the navbar dropdown.
-- **Dynamic Homepage**: Engage with captivating banners, featured classes, partner highlights, and user feedback carousels.
-- **Class Listings**: Explore a diverse range of classes with detailed information including title, instructor, price, and enrollment status.
-- **Enrollment Functionality**: Easily enroll in classes and track your progress through the student dashboard.
-- **Teacher Enrollment**: Aspiring instructors can apply to teach on Learnify, providing their details and expertise for review.
-- **Admin Control Panel**: Admins can manage teacher requests, user roles, class approvals, and overall platform content.
-- **Comprehensive Dashboard**: Students and teachers enjoy dedicated dashboards with streamlined access to relevant features.
-- **Secure Authentication**: Firebase login and registration systems with error handling and optional social sign-in.
+- Comprehensive Dashboard
+- Secure Authentication
+- Payment Integration with Stripe
+
+
+
+
+## To Run This Site Locally
+
+**Simply run these command on your command prompt** 
+
+1. **Clone the Repository**:
+   ```sh
+   git clone https://github.com/Anupam2570632/Learnify.git
+2. **Navigate to the Project Directory:**
+   ```sh
+   cd Learnify
+3. **Install Dependencies:**
+   ```sh
+   npm install
+4. **Start the Development Server:**
+   ```sh
+   npm run dev
+  
