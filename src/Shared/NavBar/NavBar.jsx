@@ -3,7 +3,6 @@ import './navbar.css'
 import Btn from "../../components/Btn";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
-import logo from '../../assets/logoLearnify.png'
 import { toast } from "react-toastify";
 
 const NavBar = () => {
@@ -24,28 +23,28 @@ const NavBar = () => {
     }
 
     const links = <>
-        <li><NavLink className={'text-[18px] font-bold'} to={'/'}>Home</NavLink></li>
-        <li><NavLink className={'text-[18px] font-bold'} to={'/allClasses'}>All Classes</NavLink></li>
-        <li><NavLink className={'text-[18px] font-bold'} to={'/tech'}>Tech on Learnify</NavLink></li>
+        <li><NavLink className={'text-[18px] font-bold bg-white hover:bg-white'} to={'/'}>Home</NavLink></li>
+        <li><NavLink className={'text-[18px] font-bold bg-white hover:bg-white'} to={'/allClasses'}>All Classes</NavLink></li>
+        <li><NavLink className={'text-[18px] font-bold bg-white hover:bg-white'} to={'/tech'}>Tech on Learnify</NavLink></li>
     </>
     return (
-        <div className="w-full  bg-cyan-600 sticky z-10 top-0 text-white">
+        <div className="w-full sticky z-10 top-0 bg-white">
             <div className="navbar md:w-4/5 mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown m-0">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </div>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-[#002244] rounded-box w-52">
+                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 space-y-2 shadow bg-white rounded-box w-52">
                             {links}
                         </ul>
                     </div>
-                    <Link className="text-2xl font-black text-white" to={'/'}>
-                        <img className="mix-blend-multiply h-10 " src={logo} alt="" />
+                    <Link className="text-2xl font-black" to={'/'}>
+                        Learnify
                     </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1">
+                    <ul className="menu menu-horizontal px-1 ">
                         {links}
                     </ul>
                 </div>

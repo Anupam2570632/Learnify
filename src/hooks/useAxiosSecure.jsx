@@ -5,7 +5,8 @@ import { AuthContext } from "../Provider/AuthProvider/AuthProvider";
 import { toast } from "react-toastify";
 
 const axiosSecure = axios.create({
-    baseURL: 'https://a-12-server-alpha.vercel.app/'
+    // baseURL: 'https://a-12-server-alpha.vercel.app/'
+    baseURL: 'http://localhost:5000/'
 });
 
 const useAxiosSecure = () => {

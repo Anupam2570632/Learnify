@@ -9,6 +9,7 @@ const TechOn = () => {
     const [status, setStatus] = useState('');
     const [requestArray, setRequestArray] = useState([]);
     const [triggerFetch, setTriggerFetch] = useState(false); // State variable to trigger useEffect
+    // eslint-disable-next-line no-unused-vars
     const { register, formState: { errors }, handleSubmit, setValue } = useForm();
     const axiosSecure = useAxiosSecure();
 
