@@ -17,6 +17,7 @@ const CheckoutForm = ({ id }) => {
     const { user } = useContext(AuthContext)
     const [loading, setLoading] = useState(false)
 
+
     const axiosSecure = useAxiosSecure()
     const { data = [], isPending } = useQuery({
         queryKey: ['classDetails', { id }],
@@ -97,6 +98,8 @@ const CheckoutForm = ({ id }) => {
 
                 const payment = {
                     email: user?.email,
+                    userName: user?.displayName,
+                    imageUrl: user?.photoURL,
                     price: totalPrice,
                     transactionId: paymentIntent.id,
                     classId: id,
